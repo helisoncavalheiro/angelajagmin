@@ -1,0 +1,13 @@
+form label{
+	font-size: 20px;
+	color: #7b1fa2;
+}
+
+footer{
+	padding-bottom: 0px;
+}
+
+.left-nav{
+	position: fixed;
+	height: 100%;
+}
