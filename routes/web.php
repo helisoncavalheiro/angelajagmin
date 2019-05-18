@@ -20,13 +20,26 @@ Route::view('/', 'inicial.home');
 /*
 Rota para a area administrativa
 */
-Route::view('/administrativo', 'admin.inicial');
+Route::get('/admin', 'AdminController@index');
 
 /*
 renderiza a view publicação
 Adicionar um parâmetro com o id da publicacção
 e um controller que recupera essa publicação
 */
+/*
 Route::get('/publicacao', function(){
 	return view('inicial.publicacao');
 });
+
+Route::post('/administrativo/savePublicacao', 'PublicacaoController@save');
+*/
+
+
+
+Route::prefix('admin')->group(function(){
+	Route::resource('publicacoes', 'PublicacaoController');
+});
+
+
+

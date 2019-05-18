@@ -22,16 +22,18 @@
     </ul>
     <div class="nav-wrapper navbar-fixed">
 
-      <nav class="top-nav light-blue darken-1">
+      <nav class="top-nav deep-orange lighten-1">
         <a href="#" class="left brand-logo">Blog Ângela Carretta - Área Administrativa</a>
-        <ul class="right valign-wrapper">
-          <li>
-            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
-              <i class="material-icons left">account_circle</i>
+        <ul class="right">
+          <div class="valign-wrapper">          
+            <li>
+              <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                <i class="material-icons left">account_circle</i>
                 Helison
-              <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+          </div>
         </ul>
       </nav>
     </div>
@@ -40,6 +42,15 @@
   <main>
     <div class="row">
       <div class="col m3 blue-grey darken-4 left-nav">
+        <ul >
+          <li><a class="white-text" href="#"><i class="material-icons left">description</i>Publicações</a></li>
+          <br/>
+          <li><a class="white-text" href="#"><i class="material-icons left">school</i>Projetos</a></li>
+          <br/>
+          <li><a class="white-text" href="#"><i class="material-icons left">bookmark</i>Categorias</a></li>
+          <br/>
+          <li><a class="white-text" href="#"><i class="material-icons left">person</i>Usuários</a></li>
+        </ul>
       </div>
 
 
@@ -49,13 +60,13 @@
       pai de todas com a class="col m9 pull-m3"
     -->
 
-     @yield('admin-content')
+    @yield('admin-content')
 
     <!--
     FIM DO CONTEÚDO DINÂMICO
   -->
-    </div>
-  </main>
+</div>
+</main>
 
 <footer class="light-blue darken-1">
   <div class="row">
