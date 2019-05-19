@@ -16,7 +16,7 @@ Adicionar um controller que recupera as últimas
 publicações do banco de dados
 */
 Route::view('/', 'inicial.home');
-
+Route::view('/admin/addPubli', 'admin.form_publi');
 /*
 Rota para a area administrativa
 */

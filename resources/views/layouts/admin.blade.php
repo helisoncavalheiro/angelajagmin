@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Ângela Carreta</title>
   <!-- CSS  -->
-  <link href="css/admin-style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="{{ asset('css/admin-style.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="{{ asset('css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body>
@@ -41,11 +41,11 @@
 
   <main>
     <div class="row">
-      <div class="col m3 blue-grey darken-4 left-nav">
+      <div class="col m2 blue-grey darken-4 left-nav">
         <ul >
-          <li><a class="white-text" href="#"><i class="material-icons left">description</i>Publicações</a></li>
+          <li><a class="white-text" href="{{ action('PublicacaoController@index')}}"><i class="material-icons left">description</i>Publicações</a></li>
           <br/>
-          <li><a class="white-text" href="#"><i class="material-icons left">school</i>Projetos</a></li>
+          <li><a class="white-text" href="{{ action('ProjetoController@index') }}"><i class="material-icons left">school</i>Projetos</a></li>
           <br/>
           <li><a class="white-text" href="#"><i class="material-icons left">bookmark</i>Categorias</a></li>
           <br/>
@@ -57,7 +57,7 @@
       <!-- INÍCIO DO CONTEÚDO DINÂMICO
 
       ***NOTE: Todo o conteúdo dinâmico deve ter uma tag div que seja
-      pai de todas com a class="col m9 pull-m3"
+      pai de todas com a class="col m10 push-m3"
     -->
 
     @yield('admin-content')
@@ -68,7 +68,8 @@
 </div>
 </main>
 
-<footer class="light-blue darken-1">
+<!--
+<footer class="light-blue darken-1 page-footer">
   <div class="row">
     <div class="col s9 push-m3">
       <p>
@@ -77,14 +78,15 @@
     </div>
   </div>
 </footer>
+-->
 </body>
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
-<script src="ckeditor/ckeditor.js"></script>
-<script src="js/script.js"></script>
+<script src="{{ asset('js/materialize.js') }}"></script>
+<script src="{{ asset('js/init.js') }}"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
 
 </body>
 
