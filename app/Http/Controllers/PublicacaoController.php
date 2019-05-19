@@ -13,7 +13,7 @@ class PublicacaoController extends Controller
      */
     public function index()
     {
-        
+        return view('admin.publicacoes');
     }
 
     /**
@@ -23,7 +23,7 @@ class PublicacaoController extends Controller
      */
     public function create()
     {
-        return view('admin.inicial');
+        return view('admin.form_publi');
     }
 
     /**
