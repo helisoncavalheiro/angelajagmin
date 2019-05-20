@@ -5,7 +5,7 @@
 <div class="col m9 push-m3">
 	<div class="container">
 		<div class="section">
-			<form>
+			<form method="POST" enctype="multipart/form-data" action="{{ action('ProjetoController@store') }}">
 				
 				{{ csrf_field() }}
 
@@ -15,23 +15,35 @@
 				</div>
 
 				<div class="section">
-					<label for="content">Descrição do projeto: </label>
-					<textarea name="editor1" id="editor1" rows="20"></textarea>
+					<label for="editor1">Descrição do projeto: </label>
+					<textarea name="descricao" id="editor1" rows="20"></textarea>
 					<br/>
 					<div class="divider"></div>
 				</div>
 
 				<div class="section">
-					<label>Imagem Principal: </label>
-					<div class="file-field input-field">
+					<label>Imagem: </label>
+					<div class="file-field input-field">				
 						<div class="btn">
 							<span>Selecione...</span>
-							<input type="file" multiple name="imagem_principal"/>
+							<input type="file" name="imagem">
 						</div>
 						<div class="file-path-wrapper">
 							<input class="file-path validate" type="text">
 						</div>
 					</div>
+				</div>
+				<div class="row section">
+					<div class="switch col s3">
+						<label>
+							Ativo
+							<input type="checkbox" name="situacao">
+							<span class="lever"></span>
+						</label>
+					</div>
+					<button class="col s2 btn waves-effect waves-light" type="submit">Salvar
+						<i class="material-icons right">send</i>
+					</button>
 				</div>
 
 			</form>

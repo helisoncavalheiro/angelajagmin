@@ -26,10 +26,24 @@
 						<th>Título</th>
 						<th>Data de Criação</th>
 						<th>Última Modificação</th>
+						<!--
 						<th>Editar</th>
 						<th>Excluir</th>
+						-->
 					</tr>
 				</thead>
+				
+				<tbody>
+					@foreach($projetos as $projeto)
+					<tr>
+						<td><a href="#" >{{ $projeto->id }}</a></td>
+						<td>{{ $projeto->titulo }}</td>
+						<td>{{ $projeto->created_at }}</td>
+						<td>{{ $projeto->updated_at }}</td>
+					</tr>
+					@endforeach
+				</tbody>
+				
 			</table>
 		</div>
 	</div>

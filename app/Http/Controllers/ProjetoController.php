@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Projeto;
 class ProjetoController extends Controller
 {
     /**
@@ -13,7 +13,14 @@ class ProjetoController extends Controller
      */
     public function index()
     {
-        return view('admin.projetos');
+        //nova instância de um projeto
+        $projeto = new Projeto();
+        // pega todos os projetos do banco
+        $projetos = $projeto->all();
+        //retorna a view projetos passando como parâmetro o array de projetos
+        return view('admin.projetos', [
+            'projetos' => $projetos
+        ]);
     }
 
     /**
@@ -34,7 +41,32 @@ class ProjetoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //caminho das imagens dos projetos
+        $spath = "/images/projetos/";
+
+        // Nova instância de um projeto
+        $projeto = new Projeto();
+        //Captura o título da requisição
+        $projeto->titulo = $request->input('titulo');
+        //Captura a descrição da requisição
+        $projeto->descricao = $request->input('descricao');
+        
+        //Testa se existe a imagem na requisição e se não houveram erros no upload
+        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+            //Captura a imagem da requisição
+            $file = $request->file('imagem');
+            //Armazena a imagem no caminho /storage/public/images/projetos
+            $file->store('images/projetos');
+            //Captura o novo nome gerado para a imagem
+            $name = $file->hashName();
+            //Salva o novo nome da imagem
+            $projeto->foto = $spath . $name;
+            //return $projeto->foto;
+        }
+        //Salva no banco    
+        $projeto->save();
+        //retorna para a página de projetos
+        return view('admin.projetos');
     }
 
     /**
@@ -45,7 +77,7 @@ class ProjetoController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
