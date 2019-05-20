@@ -8,7 +8,7 @@
 			<span class=""><h1>Publicações</h1></span>
 		</div>
 		<div class="col m3">
-			<a href="{{ action('PublicacaoController@create') }}">
+			<a href="{{ action('Admin\PublicacaoController@create') }}">
 				<button class="center-align btn-large waves-effect waves-light">
 					<i></i>
 					Nova

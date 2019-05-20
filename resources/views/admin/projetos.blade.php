@@ -8,7 +8,7 @@
 			<span class=""><h1>Projetos</h1></span>
 		</div>
 		<div class="col m3">
-			<a href="{{ action('ProjetoController@create') }}">
+			<a href="{{ action('Admin\ProjetoController@create') }}">
 				<button class="center-align btn-large waves-effect waves-light">
 					<i></i>
 					Novo
