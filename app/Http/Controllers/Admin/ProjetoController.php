@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Projeto;
 class ProjetoController extends Controller
 {
@@ -13,10 +14,8 @@ class ProjetoController extends Controller
      */
     public function index()
     {
-        //nova instância de um projeto
-        $projeto = new Projeto();
-        // pega todos os projetos do banco
-        $projetos = $projeto->all();
+                //nova instância de um projeto
+        $projetos = Projeto::all();
         //retorna a view projetos passando como parâmetro o array de projetos
         return view('admin.projetos', [
             'projetos' => $projetos
@@ -77,7 +76,8 @@ class ProjetoController extends Controller
      */
     public function show($id)
     {
-        
+        $projeto = Projeto::findOrFail($id);
+        return view('admin.form_projeto', compact($projeto));
     }
 
     /**

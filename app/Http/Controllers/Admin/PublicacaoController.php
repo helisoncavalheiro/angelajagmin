@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AutorController extends Controller
+class PublicacaoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class AutorController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.publicacoes');
     }
 
     /**
@@ -23,7 +24,7 @@ class AutorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.form_add_publicacao');
     }
 
     /**
