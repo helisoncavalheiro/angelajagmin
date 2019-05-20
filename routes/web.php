@@ -16,18 +16,17 @@ Adicionar um controller que recupera as últimas
 publicações do banco de dados
 */
 Route::view('/', 'inicial.home');
-Route::view('/admin/addPubli', 'admin.form_publi');
 /*
 Rota para a area administrativa
 */
-Route::get('/admin', 'AdminController@index');
+Route::get('/admin', 'Admin\PublicacaoController@index');
 
 Route::prefix('/admin')->group(function(){
 	Route::resources([
-		'autor'=>'AutorController',
-		'categoria'=>'CategoriaController',
-		'projeto'=>'ProjetoController',
-		'publicacao'=>'PublicacaoController'
+		'autor'=>'Admin\\AutorController',
+		'categoria'=>'Admin\\CategoriaController',
+		'projeto'=>'Admin\\ProjetoController',
+		'publicacao'=>'Admin\\PublicacaoController'
 	]);
 });
 
