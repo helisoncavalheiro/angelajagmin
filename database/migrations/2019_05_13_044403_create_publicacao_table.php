@@ -35,7 +35,7 @@ class CreatePublicacaoTable extends Migration
         });
 
         Schema::table('publicacao', function(Blueprint $table) {
-            $table->foreign('projeto')->references('id')->on('projeto');
+            $table->foreign('projeto')->references('id')->on('projetos');
             $table->foreign('autor')->references('id')->on('autor');
         });
     }
