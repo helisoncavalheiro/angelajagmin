@@ -43,9 +43,9 @@
     <div class="row">
       <div class="col m2 blue-grey darken-4 left-nav">
         <ul >
-          <li><a class="white-text" href="{{ action('Admin\PublicacaoController@index')}}"><i class="material-icons left">description</i>Publicações</a></li>
+          <li><a class="white-text" href="{{ action('Admin\PostController@index')}}"><i class="material-icons left">description</i>Publicações</a></li>
           <br/>
-          <li><a class="white-text" href="{{ action('Admin\ProjetoController@index') }}"><i class="material-icons left">school</i>Projetos</a></li>
+          <li><a class="white-text" href="{{ action('Admin\ProjectController@index') }}"><i class="material-icons left">school</i>Projetos</a></li>
           <br/>
           <li><a class="white-text" href="#"><i class="material-icons left">bookmark</i>Categorias</a></li>
           <br/>

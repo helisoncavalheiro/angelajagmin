@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Projeto;
-class ProjetoController extends Controller
+use App\Post;
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +14,7 @@ class ProjetoController extends Controller
      */
     public function index()
     {
-                //nova instância de um projeto
-        $projetos = Projeto::all();
-        //retorna a view projetos passando como parâmetro o array de projetos
-        return view('admin.projetos', [
-            'projetos' => $projetos
-        ]);
+        return view('admin.publicacoes');
     }
 
     /**
@@ -29,7 +24,7 @@ class ProjetoController extends Controller
      */
     public function create()
     {
-        return view('admin.form_projeto');
+        return view('admin.form_add_publicacao');
     }
 
     /**
@@ -40,32 +35,30 @@ class ProjetoController extends Controller
      */
     public function store(Request $request)
     {
-        //caminho das imagens dos projetos
-        $spath = "/images/projetos/";
-
-        // Nova instância de um projeto
-        $projeto = new Projeto();
-        //Captura o título da requisição
-        $projeto->titulo = $request->input('titulo');
-        //Captura a descrição da requisição
-        $projeto->descricao = $request->input('descricao');
-        
-        //Testa se existe a imagem na requisição e se não houveram erros no upload
         if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
             //Captura a imagem da requisição
-            $file = $request->file('imagem');
+            $upfile = $request->file('imagem');
             //Armazena a imagem no caminho /storage/public/images/projetos
-            $file->store('images/projetos');
+            $upfile->store('images/projetos');
             //Captura o novo nome gerado para a imagem
             $name = $file->hashName();
             //Salva o novo nome da imagem
-            $projeto->foto = $spath . $name;
-            //return $projeto->foto;
+            $nfile = $spath . $name; 
+        }else{
+            $nfile = null;
         }
-        //Salva no banco    
-        $projeto->save();
-        //retorna para a página de projetos
-        return view('admin.projetos');
+
+        Post::create([
+            "titulo" => $request->input('titulo'),
+            "imagem" => $nfile,
+            "conteudo" => $request->input('conteudo'),
+            "arquivos" => null,
+            "situacao" => $request->input('situacao'),
+            "projeto" => null,
+            "autor" => null
+        ]);
+
+        return view('admin.publicacoes');
     }
 
     /**
@@ -76,8 +69,7 @@ class ProjetoController extends Controller
      */
     public function show($id)
     {
-        $projeto = Projeto::findOrFail($id);
-        return view('admin.form_projeto', compact($projeto));
+        //
     }
 
     /**

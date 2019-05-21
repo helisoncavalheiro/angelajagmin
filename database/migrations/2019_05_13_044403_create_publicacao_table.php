@@ -13,7 +13,7 @@ class CreatePublicacaoTable extends Migration
      */
     public function up()
     {
-        Schema::create('publicacao', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             //id da publicacao
             $table->bigIncrements('id');
             //projeto da publicacao
@@ -34,9 +34,9 @@ class CreatePublicacaoTable extends Migration
             $table->boolean('situacao');
         });
 
-        Schema::table('publicacao', function(Blueprint $table) {
-            $table->foreign('projeto')->references('id')->on('projetos');
-            $table->foreign('autor')->references('id')->on('autor');
+        Schema::table('posts', function(Blueprint $table) {
+            $table->foreign('projeto')->references('id')->on('projects');
+            $table->foreign('autor')->references('id')->on('authors');
         });
     }
 
@@ -47,6 +47,6 @@ class CreatePublicacaoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publicacao');
+        Schema::dropIfExists('posts');
     }
 }

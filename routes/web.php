@@ -19,14 +19,14 @@ Route::view('/', 'inicial.home');
 /*
 Rota para a area administrativa
 */
-Route::get('/admin', 'Admin\PublicacaoController@index');
+Route::get('/admin', 'Admin\PostController@index');
 
 Route::prefix('/admin')->group(function(){
 	Route::resources([
-		'autor'=>'Admin\\AutorController',
-		'categoria'=>'Admin\\CategoriaController',
-		'projeto'=>'Admin\\ProjetoController',
-		'publicacao'=>'Admin\\PublicacaoController'
+		'autor'=>'Admin\\AuthorController',
+		'categoria'=>'Admin\\CategoryController',
+		'projeto'=>'Admin\\ProjectController',
+		'publicacao'=>'Admin\\PostController'
 	]);
 });
 

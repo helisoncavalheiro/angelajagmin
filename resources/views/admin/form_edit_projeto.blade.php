@@ -5,7 +5,7 @@
 <div class="col m9 push-m3">
 	<div class="container">
 		<div class="section">
-			<form method="POST" enctype="multipart/form-data" action="{{ action('Admin\ProjetoController@update') }}">
+			<form method="POST" enctype="multipart/form-data" action="{{ action('Admin\ProjectController@update') }}">
 				
 				{{ csrf_field() }}
 

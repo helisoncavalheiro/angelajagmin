@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Publicacao;
-class PublicacaoController extends Controller
+use App\Project;
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,12 @@ class PublicacaoController extends Controller
      */
     public function index()
     {
-        return view('admin.publicacoes');
+        //nova instância de um projeto
+        $projetos = Project::all();
+        //retorna a view projetos passando como parâmetro o array de projetos
+        return view('admin.projetos', [
+            'projetos' => $projetos
+        ]);
     }
 
     /**
@@ -24,7 +29,7 @@ class PublicacaoController extends Controller
      */
     public function create()
     {
-        return view('admin.form_add_publicacao');
+        return view('admin.form_add_projeto');
     }
 
     /**
@@ -35,31 +40,32 @@ class PublicacaoController extends Controller
      */
     public function store(Request $request)
     {
+        //caminho das imagens dos projetos
+        $spath = "/images/projetos/";
 
+        // Nova instância de um projeto
+        $projeto = new Project();
+        //Captura o título da requisição
+        $projeto->titulo = $request->input('titulo');
+        //Captura a descrição da requisição
+        $projeto->descricao = $request->input('descricao');
+        
+        //Testa se existe a imagem na requisição e se não houveram erros no upload
         if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
             //Captura a imagem da requisição
-            $upfile = $request->file('imagem');
+            $file = $request->file('imagem');
             //Armazena a imagem no caminho /storage/public/images/projetos
-            $upfile->store('images/projetos');
+            $file->store('images/projetos');
             //Captura o novo nome gerado para a imagem
             $name = $file->hashName();
             //Salva o novo nome da imagem
-            $nfile = $spath . $name; 
-        }else{
-            $nfile = null;
+            $projeto->foto = $spath . $name;
+            //return $projeto->foto;
         }
-
-        Publicacao::create([
-            "titulo" => $request->input('titulo'),
-            "imagem" => $nfile,
-            "conteudo" => $request->input('conteudo'),
-            "arquivos" => null,
-            "situacao" => $request->input('situacao'),
-            "projeto" => null,
-            "autor" => null
-        ]);
-
-        return view('admin.publicacoes');
+        //Salva no banco    
+        $projeto->save();
+        //retorna para a página de projetos
+        return view('admin.projetos');
     }
 
     /**
@@ -70,7 +76,8 @@ class PublicacaoController extends Controller
      */
     public function show($id)
     {
-        //
+        $projeto = Project::findOrFail($id);
+        return view('admin.form_projeto', compact($projeto));
     }
 
     /**

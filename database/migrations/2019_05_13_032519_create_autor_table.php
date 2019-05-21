@@ -13,7 +13,7 @@ class CreateAutorTable extends Migration
      */
     public function up()
     {
-        Schema::create('autor', function (Blueprint $table) {
+        Schema::create('authors', function (Blueprint $table) {
             //id do autor
             $table->bigIncrements('id');
             //nome do autor
@@ -52,6 +52,6 @@ class CreateAutorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('autor');
+        Schema::dropIfExists('authors');
     }
 }

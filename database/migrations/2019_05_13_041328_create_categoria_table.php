@@ -13,7 +13,7 @@ class CreateCategoriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoria', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateCategoriaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categoria');
+        Schema::dropIfExists('categories');
     }
 }
