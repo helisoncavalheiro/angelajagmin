@@ -4,7 +4,7 @@
 <div class="col m9 push-m3">
   <div class="container">
     <div class="section">
-      <form method="POST" action="/admin/savePublicacao">
+      <form method="POST" action="{{ action('Admin\PublicacaoController@store') }}">
 
       {{ csrf_field() }}
 

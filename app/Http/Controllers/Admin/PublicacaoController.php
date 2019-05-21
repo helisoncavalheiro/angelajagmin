@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Publicacao;
 class PublicacaoController extends Controller
 {
     /**
@@ -35,7 +35,31 @@ class PublicacaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+            //Captura a imagem da requisição
+            $upfile = $request->file('imagem');
+            //Armazena a imagem no caminho /storage/public/images/projetos
+            $upfile->store('images/projetos');
+            //Captura o novo nome gerado para a imagem
+            $name = $file->hashName();
+            //Salva o novo nome da imagem
+            $nfile = $spath . $name; 
+        }else{
+            $nfile = null;
+        }
+
+        Publicacao::create([
+            "titulo" => $request->input('titulo'),
+            "imagem" => $nfile,
+            "conteudo" => $request->input('conteudo'),
+            "arquivos" => null,
+            "situacao" => $request->input('situacao'),
+            "projeto" => null,
+            "autor" => null
+        ]);
+
+        return view('admin.publicacoes');
     }
 
     /**
