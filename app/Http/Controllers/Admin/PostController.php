@@ -14,7 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.publicacoes');
+        $posts = Post::all();
+        return view('admin.publicacoes', [
+            "posts" => $posts
+        ]);
     }
 
     /**
@@ -45,9 +48,11 @@ class PostController extends Controller
             //Salva o novo nome da imagem
             $nfile = $spath . $name; 
         }else{
-            $nfile = null;
+            $nfile = "";
         }
 
+        
+        
         Post::create([
             "titulo" => $request->input('titulo'),
             "imagem" => $nfile,
@@ -59,6 +64,7 @@ class PostController extends Controller
         ]);
 
         return view('admin.publicacoes');
+        
     }
 
     /**

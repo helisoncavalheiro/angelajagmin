@@ -27,10 +27,19 @@
 						<th>Autor</th>
 						<th>Data de Criação</th>
 						<th>Última Modificação</th>
-						<th>Editar</th>
-						<th>Excluir</th>
 					</tr>
 				</thead>
+				<tbody>
+					@foreach($posts as $p)
+					<tr>
+						<td>{{ $p->id }}</td>
+						<td>{{ $p->titulo }}</td>
+						<td>{{ $p->autor }}</td>
+						<td>{{ $p->created_at }}</td>
+						<td>{{ $p->updated_at }}</td>
+					</tr>
+					@endforeach
+				</tbody>
 			</table>
 		</div>
 	</div>

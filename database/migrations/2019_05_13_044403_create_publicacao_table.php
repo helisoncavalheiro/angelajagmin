@@ -17,9 +17,9 @@ class CreatePublicacaoTable extends Migration
             //id da publicacao
             $table->bigIncrements('id');
             //projeto da publicacao
-            $table->bigInteger('projeto')->unsigned();
+            $table->bigInteger('projeto')->unsigned()->nullable($value = true);
             //autor da publicacao
-            $table->bigInteger('autor')->unsigned();
+            $table->bigInteger('autor')->unsigned()->nullable($value = true);
             //timestamps (criado em e alterado em)
             $table->timestamps();
             //titulo da publicacao
@@ -29,9 +29,9 @@ class CreatePublicacaoTable extends Migration
             //conteudo da publicacao
             $table->text('conteudo');
             //arquivos da publicacao (vai ser um json)
-            $table->text('arquivos');
+            $table->text('arquivos')->nullable($value = true);
             //situacao da publicacao
-            $table->boolean('situacao');
+            $table->string('situacao');
         });
 
         Schema::table('posts', function(Blueprint $table) {

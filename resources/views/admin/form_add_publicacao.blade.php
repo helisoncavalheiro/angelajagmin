@@ -25,11 +25,11 @@
 
         <!--input da imagem principal -->
         <div class="section">
-          <label>Imagem Principal: </label>
-          <div class="file-field input-field">
+          <label>Imagem: </label>
+          <div class="file-field input-field">        
             <div class="btn">
               <span>Selecione...</span>
-              <input type="file" multiple name="imagem_principal"/>
+              <input type="file" name="imagem">
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
@@ -41,7 +41,7 @@
         <!--editor de texto -->
         <div class="section">
           <label for="content">Conteúdo: </label>
-          <textarea name="editor1" id="editor1" rows="20"></textarea>
+          <textarea name="conteudo" id="editor1" rows="20"></textarea>
           <br/>
           <div class="divider"></div>
         </div>
