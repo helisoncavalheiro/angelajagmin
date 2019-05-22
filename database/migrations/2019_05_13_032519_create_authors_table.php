@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAutorTable extends Migration
+class CreateAuthorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,16 +16,16 @@ class CreateAutorTable extends Migration
         Schema::create('authors', function (Blueprint $table) {
             //id do autor
             $table->bigIncrements('id');
+            //tipo do autor
+            $table->string('role');
             //nome do autor
-            $table->string('nome');
+            $table->string('name');
             //descrição do autor
-            $table->text('descricao');
+            $table->text('description');
             //foto do autor (caminho da foto)
-            $table->string('foto');
-            //email do autor
-            $table->string('email');
+            $table->string('photo');
             //telefone do autor
-            $table->string('telefone');
+            $table->string('phone');
             //redes do autor
             /*
                 para evitar a relação many to many
@@ -37,9 +37,11 @@ class CreateAutorTable extends Migration
                     'rede2' : 'link2'
                 }
             */
-            $table->text('redes');
+            $table->text('social');
+            //email do autor (login)
+            $table->string('email');            
             //senha do autor
-            $table->text('senha');
+            $table->text('password');
             //timestamps (criado em e alterado em)
             $table->timestamps();
         });

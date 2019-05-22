@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePublicacaoTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,26 +17,22 @@ class CreatePublicacaoTable extends Migration
             //id da publicacao
             $table->bigIncrements('id');
             //projeto da publicacao
-            $table->bigInteger('projeto')->unsigned()->nullable($value = true);
+            $table->bigInteger('project')->unsigned()->nullable($value = true);
             //autor da publicacao
-            $table->bigInteger('autor')->unsigned()->nullable($value = true);
+            $table->bigInteger('author')->unsigned()->nullable($value = true);
             //timestamps (criado em e alterado em)
             $table->timestamps();
             //titulo da publicacao
-            $table->string('titulo');
-            //imagem da publicacao
-            $table->text('imagem');
+            $table->string('title');
             //conteudo da publicacao
-            $table->text('conteudo');
-            //arquivos da publicacao (vai ser um json)
-            $table->text('arquivos')->nullable($value = true);
+            $table->text('content');
             //situacao da publicacao
-            $table->string('situacao');
+            $table->string('status');
         });
 
         Schema::table('posts', function(Blueprint $table) {
-            $table->foreign('projeto')->references('id')->on('projects');
-            $table->foreign('autor')->references('id')->on('authors');
+            $table->foreign('project')->references('id')->on('projects');
+            $table->foreign('author')->references('id')->on('authors');
         });
     }
 
