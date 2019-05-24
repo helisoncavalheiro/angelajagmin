@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.publicacoes', [
+        return view('admin.posts', [
             "posts" => $posts
         ]);
     }
@@ -56,10 +56,10 @@ class PostController extends Controller
         foreach ($photos as $photo) {
 
             $filename = $photo->store('images/posts');            
-            Image::create([
-                'post' => $post->id,
+            $image = new Image([
                 'filepath' => $filename
             ]);
+            $post->images()->save($image);
         }
 
         return $this->index();
