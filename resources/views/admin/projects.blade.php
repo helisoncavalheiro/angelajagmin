@@ -5,13 +5,13 @@
 <div class="col m10 push-m2">
 	<div class="row valign-wrapper">
 		<div class="col m8 push-m1">
-			<span class=""><h1>Publicações</h1></span>
+			<span class=""><h1>Projetos</h1></span>
 		</div>
 		<div class="col m3">
-			<a href="{{ action('Admin\PostController@create') }}">
+			<a href="{{ action('Admin\ProjectController@create') }}">
 				<button class="center-align btn-large waves-effect waves-light">
 					<i></i>
-					Nova
+					Novo
 				</button>
 			</a>
 		</div>
@@ -24,22 +24,26 @@
 					<tr>
 						<th>ID</th>
 						<th>Título</th>
-						<th>Autor</th>
 						<th>Data de Criação</th>
 						<th>Última Modificação</th>
+						<!--
+						<th>Editar</th>
+						<th>Excluir</th>
+						-->
 					</tr>
 				</thead>
+				
 				<tbody>
-					@foreach($posts as $p)
+					@foreach($projetos as $projeto)
 					<tr>
-						<td><a href="admin/publicacao/{{$p->id}}/edit">{{ $p->id }}</a></td>
-						<td>{{ $p->title }}</td>
-						<td>{{ $p->author }}</td>
-						<td>{{ $p->created_at }}</td>
-						<td>{{ $p->updated_at }}</td>
+						<td><a href="#" >{{ $projeto->id }}</a></td>
+						<td>{{ $projeto->titulo }}</td>
+						<td>{{ $projeto->created_at }}</td>
+						<td>{{ $projeto->updated_at }}</td>
 					</tr>
 					@endforeach
 				</tbody>
+				
 			</table>
 		</div>
 	</div>
