@@ -15,7 +15,7 @@
 Adicionar um controller que recupera as últimas
 publicações do banco de dados
 */
-Route::view('/', 'inicial.home');
+Route::get('/', 'Home\\PostController@index')->name('home.posts');
 /*
 Rota para a area administrativa
 */
@@ -23,10 +23,10 @@ Route::get('/admin', 'Admin\PostController@index');
 
 Route::prefix('/admin')->group(function(){
 	Route::resources([
-		'autor'=>'Admin\\AuthorController',
-		'categoria'=>'Admin\\CategoryController',
-		'projeto'=>'Admin\\ProjectController',
-		'publicacao'=>'Admin\\PostController'
+		'author'=>'Admin\\AuthorController',
+		'category'=>'Admin\\CategoryController',
+		'project'=>'Admin\\ProjectController',
+		'post'=>'Admin\\PostController'
 	]);
 });
 
