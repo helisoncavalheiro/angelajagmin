@@ -32,7 +32,7 @@
 				<tbody>
 					@foreach($posts as $p)
 					<tr>
-						<td><a href="admin/publicacao/{{$p->id}}/edit">{{ $p->id }}</a></td>
+						<td><a href="{{ action('Admin\PostController@edit', ['id' => $p->id]) }}">{{ $p->id }}</a></td>
 						<td>{{ $p->title }}</td>
 						<td>{{ $p->author }}</td>
 						<td>{{ $p->created_at }}</td>

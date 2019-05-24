@@ -63,9 +63,6 @@
                 <div class="col l6 s12">
                     <h5 class="white-text">Company Bio</h5>
                     <span class="grey-text text-lighten-4">
-                        <?php
-                            echo $post->content;
-                        ?>
 
                     </span>
                 </div>
@@ -95,6 +92,9 @@
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
+
+    <!-- criar uma lógica para importar o asset certo de acordo com
+    a página -->
     <script src="{{ asset('js/init.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 </body>

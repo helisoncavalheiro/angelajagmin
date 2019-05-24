@@ -15,11 +15,10 @@
                     <a href="post/{{ $post->id }}">
                         <div class="card-noticia col m12">
                             <div class="col m6">
-                                <img class="img-noticia" src="images/sample.jpg">
                             </div>
                             <div class="col m6">
                                 <div class="conteudo-noticia">
-                                    <span><b>{{ $post->title  }}</b></span>
+                                    <span><b>{{ $post->title }}</b></span>
                                     <p><i class="material-icons left small">access_time</i>Atualizado 2 dias atrás</p>
                                     <span class="post-content  text-flow truncate">
                                         <?php echo $post->content;  ?>
@@ -63,12 +62,13 @@
                         <!-- Card do post -->
                         <div class="card medium col m8 offset-m1">
                             <div class="card-image">
-                                <img src="public/images/sample.jpg">
+                                <img class="responsive-img" src="{{ asset('images/sample.jpg') }}">
                             </div>
                             <div class="card-content">
-                                <span class="card-title">Card Title</span>
-                                <p>I am a very simple card. I am good at containing small bits of information. I am
-                                    convenient because I require little markup to use effectively.</p>
+                                <span class="card-title"></span>
+                                <span>
+                                    <?php echo $post->content ?>
+                                </span>
                             </div>
                         </div>
                     </div>

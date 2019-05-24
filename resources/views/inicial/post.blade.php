@@ -4,11 +4,6 @@
 
 <main class="section">
 
-	<div class="row">
-		<span class="header col s10 offset-s1">
-			<h1 class="center-align">{{ $post->title }}</h1>
-		</span>
-	</div>
 	<div class="row center-align">
 		<div class="col m2 ">
 			<div class="card-panel">
@@ -27,17 +22,18 @@
 		</div>
 
 		<div class="col s12 m7 ">
-			<div class="row">
-				<div class="col s10 offset-s1">
-					<img class="col s12 responsive" src="images/sample.jpg">
+			<div class="card-panel">
+				<div class="row">
+					<span class="header col s12">
+						<h1 class="left-align">{{ $post->title }}</h1>
+					</span>
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="card-panel col s12">
-					<p class="publicacao-texto">
-                    <?php echo $post->content;  ?>
-					</p>
+				<div class="row">
+					<div class="col s12">
+						<span class="flow-text publicacao-texto">
+						<?php echo $post->content;  ?>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
