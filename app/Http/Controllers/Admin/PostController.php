@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Image;
 class PostController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +23,8 @@ class PostController extends Controller
         ]);
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.form_add_publicacao');
+        return view('admin.form_add_post');
     }
 
     /**
@@ -38,33 +43,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
-            //Captura a imagem da requisição
-            $upfile = $request->file('imagem');
-            //Armazena a imagem no caminho /storage/public/images/projetos
-            $upfile->store('images/projetos');
-            //Captura o novo nome gerado para a imagem
-            $name = $file->hashName();
-            //Salva o novo nome da imagem
-            $nfile = $spath . $name; 
-        }else{
-            $nfile = "";
-        }
-
-        
-        
-        Post::create([
-            "titulo" => $request->input('titulo'),
-            "imagem" => $nfile,
-            "conteudo" => $request->input('conteudo'),
-            "arquivos" => null,
-            "situacao" => $request->input('situacao'),
-            "projeto" => null,
-            "autor" => null
+        $post = Post::create([
+            "title" => $request->input('title'),
+            "content" => $request->input('content'),
+            "status" => $request->input('status'),
+            "project" => null,
+            "author" => null
         ]);
 
-        return view('admin.publicacoes');
-        
+        $photos = $request->file('images');
+
+        foreach ($photos as $photo) {
+
+            $filename = $photo->store('images/posts');            
+            Image::create([
+                'post' => $post->id,
+                'filepath' => $filename
+            ]);
+        }
+
+        return $this->index();
     }
 
     /**
@@ -86,7 +84,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('admin.form_edit_post', ["post" => $post]);
     }
 
     /**

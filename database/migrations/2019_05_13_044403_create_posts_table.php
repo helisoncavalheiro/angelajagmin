@@ -27,7 +27,7 @@ class CreatePostsTable extends Migration
             //conteudo da publicacao
             $table->text('content');
             //situacao da publicacao
-            $table->string('status');
+            $table->string('status')->nullable($value = true);
         });
 
         Schema::table('posts', function(Blueprint $table) {
