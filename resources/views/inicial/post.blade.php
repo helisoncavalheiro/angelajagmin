@@ -6,7 +6,7 @@
 
 	<div class="row">
 		<span class="header col s10 offset-s1">
-			<h1 class="center-align">Título da Publicação</h1>
+			<h1 class="center-align">{{ $post->title }}</h1>
 		</span>
 	</div>
 	<div class="row center-align">
@@ -36,19 +36,7 @@
 			<div class="row">
 				<div class="card-panel col s12">
 					<p class="publicacao-texto">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Error maiores cupiditate neque placeat eum
-						magnam
-						sapiente. Magnam aliquam atque officiis natus ullam minus earum veritatis doloribus reprehenderit
-						incidunt.
-						Placeat, tenetur!
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus aperiam, iusto molestiae earum
-						doloribus
-						excepturi quisquam velit provident animi, ullam molestias hic iste esse nemo voluptates reprehenderit
-						repellendus libero! Doloremque.
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde consectetur, animi libero ab tempore
-						eaque
-						laboriosam tempora ea mollitia assumenda non quae sed perspiciatis, voluptates amet natus laborum beatae
-						temporibus?
+                    <?php echo $post->content;  ?>
 					</p>
 				</div>
 			</div>

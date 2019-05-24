@@ -21,6 +21,12 @@ Rota para a area administrativa
 */
 Route::get('/admin', 'Admin\PostController@index');
 
+Route::prefix('/')->group(function(){
+    Route::resources([
+        'post' => 'Home\\PostController'
+    ]);
+});
+
 Route::prefix('/admin')->group(function(){
 	Route::resources([
 		'author'=>'Admin\\AuthorController',

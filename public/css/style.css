@@ -40,8 +40,8 @@
 	display: block;
 }
 
-.conteudo-noticia p{
-	font-size: 20px;
+.conteudo-noticia .post-content {
+	font-size: 12px;
 	text-align: justify;
 	color: #616161;
 }
@@ -55,3 +55,4 @@
 	font-size: 18px;
 	text-align: justify;
 }
+

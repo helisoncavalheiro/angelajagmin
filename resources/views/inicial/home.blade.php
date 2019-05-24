@@ -1,37 +1,35 @@
 @extends('layouts.home')
 
-@section('content')
 
-<?php
-$i = 0;
-?>
+
+@section('content')
 <main>
     <!-- Seção de posts -->
     <div class="section">
         <div class="row">
             <div class="col m7 offset-m1 ">
                 <!-- Linha que contém as duas colunas (posts e sidebar) -->
-                <?php while($i<10){ ?>
+                @foreach($posts as $post)
                 <div class="card row show-on-medium-and-up hide-on-small-only hoverable">
                     <!-- Coluna dos posts para telas grandes -->
-                    <a href="#">
+                    <a href="post/{{ $post->id }}">
                         <div class="card-noticia col m12">
                             <div class="col m6">
                                 <img class="img-noticia" src="images/sample.jpg">
                             </div>
                             <div class="col m6">
                                 <div class="conteudo-noticia">
-                                    <span><b>Título da Publicação</b></span>
+                                    <span><b>{{ $post->title  }}</b></span>
                                     <p><i class="material-icons left small">access_time</i>Atualizado 2 dias atrás</p>
-                                    <p class="">I am a very simple card. I am good at containing small bits of information. I
-                                        am
-                                        convenient because I require little markup to use effectively.</p>
+                                    <span class="post-content  text-flow truncate">
+                                        <?php echo $post->content;  ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <?php $i=$i+1; } $i=0;?>
+                @endforeach
             </div>
             <div class="col m4 hide-on-med-and-down">
                 <div class="card-panel">
@@ -59,7 +57,7 @@ $i = 0;
                 -->
         <div class="container show-on-small hide-on-med-and-up">
             <div class="row show-on-small">
-                <?php while($i<10){?>
+                @foreach($posts as $post)
                 <div class="col s12 show-on-small">
                     <div class="row">
                         <!-- Card do post -->
@@ -75,7 +73,7 @@ $i = 0;
                         </div>
                     </div>
                 </div>
-                <?php $i = $i+1; }?>
+                @endforeach
             </div>
         </div>
     </div>
