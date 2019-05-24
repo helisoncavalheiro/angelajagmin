@@ -32,9 +32,9 @@
 				<tbody>
 					@foreach($posts as $p)
 					<tr>
-						<td>{{ $p->id }}</td>
-						<td>{{ $p->titulo }}</td>
-						<td>{{ $p->autor }}</td>
+						<td><a href="admin/publicacao/{{$p->id}}/edit">{{ $p->id }}</a></td>
+						<td>{{ $p->title }}</td>
+						<td>{{ $p->author }}</td>
 						<td>{{ $p->created_at }}</td>
 						<td>{{ $p->updated_at }}</td>
 					</tr>

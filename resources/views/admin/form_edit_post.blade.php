@@ -4,7 +4,7 @@
 <div class="col m9 push-m3">
   <div class="container">
     <div class="section">
-      <form method="POST" action="{{ action('Admin\PostController@store') }}">
+      <form method="POST" enctype="multipart/form-data" action="{{ action('Admin\PostController@store') }}">
 
       {{ csrf_field() }}
 
@@ -12,6 +12,7 @@
         <div class="section">
           <label for="titulo" class="header">Título: </label>
           <input
+          value="{{ $post->title }}"
           id="titulo"
           type="text"
           name="titulo"
@@ -29,7 +30,7 @@
           <div class="file-field input-field">        
             <div class="btn">
               <span>Selecione...</span>
-              <input type="file" name="imagem">
+              <input type="file" name="image[]" multiple />
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
@@ -41,7 +42,7 @@
         <!--editor de texto -->
         <div class="section">
           <label for="content">Conteúdo: </label>
-          <textarea name="conteudo" id="editor1" rows="20"></textarea>
+          <textarea name="content" value="{{ $post->content }}" id="content" rows="20"></textarea>
           <br/>
           <div class="divider"></div>
         </div>

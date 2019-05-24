@@ -20,13 +20,10 @@ class Post extends Model
     }
 
     protected $fillable = [
-
-        "titulo",
-        "imagem",
-        "conteudo",
-        "arquivos",
-        "situacao",
-        "projeto",
-        "autor"
+        "title",
+        "content",
+        "status",
+        "project",
+        "author"
     ];
 }
