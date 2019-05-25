@@ -15,12 +15,13 @@
                     <a href="post/{{ $post->id }}">
                         <div class="card-noticia col m12">
                             <div class="col m6">
+                                <img class="responsive-img" src="{{ asset('storage/' . $post->images->first()->filepath)  }}">
                             </div>
                             <div class="col m6">
                                 <div class="conteudo-noticia">
                                     <span><b>{{ $post->title }}</b></span>
                                     <p><i class="material-icons left small">access_time</i>Atualizado 2 dias atrás</p>
-                                    <span class="post-content  text-flow truncate">
+                                    <span class="post-content text-flow truncate">
                                         <?php echo $post->content;  ?>
                                     </span>
                                 </div>
@@ -62,7 +63,7 @@
                         <!-- Card do post -->
                         <div class="card medium col m8 offset-m1">
                             <div class="card-image">
-                                <img class="responsive-img" src="{{ asset('images/sample.jpg') }}">
+                                <img class="responsive-img" src="">
                             </div>
                             <div class="card-content">
                                 <span class="card-title"></span>

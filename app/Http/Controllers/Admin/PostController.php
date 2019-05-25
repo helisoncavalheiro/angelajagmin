@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Image;
+use Illuminate\Support\Facades\Storage;
+
 class PostController extends Controller
 {
 
@@ -54,14 +56,14 @@ class PostController extends Controller
         $photos = $request->file('images');
 
         foreach ($photos as $photo) {
-
-            $filename = $photo->store('images/posts');            
+            $path = "images/posts";
+            $filename = $photo->store($path);
+            //= $photo->hashName();
             $image = new Image([
                 'filepath' => $filename
             ]);
             $post->images()->save($image);
         }
-
         return $this->index();
     }
 
