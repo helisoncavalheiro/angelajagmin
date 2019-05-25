@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <title>Ângela Carreta</title>
     <!-- CSS  -->
-    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{{ asset('assets/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{{ asset('css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{{ asset('assets/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body class="blue-grey lighten-5">
@@ -20,7 +20,7 @@
                         <div class="col s12 offset-m1">
                             <div class="">
                                 <ul class="center hide-on-med-and-down">
-                                    <li><a class="nav-item" href="#">Início</a></li>
+                                    <li><a class="nav-item" href=" {{action('Home\PostController@index')}} ">Início</a></li>
                                     <li><a class="nav-item" href="#">Projetos</a></li>
                                     <li><a class="nav-item" href="#">Atividades</a></li>
                                     <li>
@@ -91,12 +91,12 @@
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="{{ asset('js/materialize.js') }}"></script>
+    <script src="{{ asset('assets/js/materialize.js') }}"></script>
 
     <!-- criar uma lógica para importar o asset certo de acordo com
     a página -->
-    <script src="{{ asset('js/init.js') }}"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/init.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 
 </html>

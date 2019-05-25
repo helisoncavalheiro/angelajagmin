@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Ângela Carreta</title>
   <!-- CSS  -->
-  <link href="{{ asset('css/admin-style.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="{{ asset('assets/css/admin-style.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{{ asset('css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="{{ asset('assets/css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body>
@@ -83,10 +83,10 @@
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="{{ asset('js/materialize.js') }}"></script>
-<script src="{{ asset('js/init.js') }}"></script>
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ asset('assets/js/materialize.js') }}"></script>
+<script src="{{ asset('assets/js/init.js') }}"></script>
+<script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/js/script.js') }}"></script>
 
 </body>
 
