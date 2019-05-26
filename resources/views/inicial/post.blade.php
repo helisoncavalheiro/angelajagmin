@@ -1,8 +1,8 @@
 @extends('layouts.home')
 
 @section('content')
-<link href="{{ asset('assets/home/css/post.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-<script src="{{ asset('assets/home/js/post.js') }}" type="text/javascript" rel="script"></script>
+<link href="{{ secure_asset('assets/home/css/post.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+<script src="{{ secure_asset('assets/home/js/post.js') }}" type="text/javascript" rel="script"></script>
 <main class="section">
 
 	<div class="row">
@@ -50,7 +50,7 @@
 						@foreach($post->images as $i)
 						<div class="col s10">
 							<a class="carousel-item" href="#one!">
-								<img src="{{ asset($i->filepath) }}">
+								<img src="{{ secure_asset($i->filepath) }}">
 							</a>
 						</div>
 						@endforeach
