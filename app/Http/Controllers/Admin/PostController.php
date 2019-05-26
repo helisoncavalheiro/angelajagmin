@@ -60,10 +60,11 @@ class PostController extends Controller
             $filename = $photo->store($path);
             //= $photo->hashName();
             $image = new Image([
-                'filepath' => $filename
+                'filepath' => 'storage/' . $filename
             ]);
             $post->images()->save($image);
         }
+
         return $this->index();
     }
 
