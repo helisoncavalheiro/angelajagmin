@@ -6,31 +6,64 @@
 <main>
     <!-- Seção de posts -->
     <div class="section">
+        <!-- Linha que contém as duas colunas (posts e mais clicadas) -->
         <div class="row">
+            <!-- Coluna dos posts para telas grandes -->
             <div class="col m7 offset-m1 ">
-                <!-- Linha que contém as duas colunas (posts e sidebar) -->
+                <!-- Para cada post no array de posts -->
                 @foreach($posts as $post)
+                <!-- Card do post -->
                 <div class="card row show-on-medium-and-up hide-on-small-only hoverable">
-                    <!-- Coluna dos posts para telas grandes -->
+                    <!-- Link que direciona para a página do post-->
                     <a href="post/{{ $post->id }}">
+                        <!--Card da notícia (adiciona margem)-->
                         <div class="card-noticia col m12">
-                            <div class="col m6">
-                                <img class="responsive-img" src="{{ asset('storage/' . $post->images->first()->filepath)  }}">
-                            </div>
-                            <div class="col m6">
-                                <div class="conteudo-noticia">
-                                    <span><b>{{ $post->title }}</b></span>
-                                    <p><i class="material-icons left small">access_time</i>Atualizado 2 dias atrás</p>
-                                    <span class="post-content text-flow truncate">
-                                        <?php echo $post->content;  ?>
-                                    </span>
+
+                            <!-- Linha do título -->
+                            <div class="row">
+                                <div class="post-header">
+                                    <!-- Título da notícia -->
+                                    <span class="post-title">{{ $post->title }}</span>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <!-- Última atualização do post -->
+                                <p class="col s3 post-update valign-wrapper"><i class="material-icons left tiny">access_time</i> {{ $post->updated_at  }}</p>
+                                <!--Autor do post -->
+                                <p class="col s5pp post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i> Ângela Jagmin Carretta </p>
+                            </div>
+
+                            <!-- Linha da imagem e do resumo -->
+                            <div class="row valign-wrapper">
+
+                                <!--Coluna da imagem da notícia-->
+                                <div class="col m6">
+
+                                    <img class="responsive-img" src="{{ asset($post->images->first()->filepath)  }}">
+                                </div>
+                                <!--Fim da coluna da imagem da notícia-->
+
+                                <!--Coluna do resumo da notícia-->
+                                <div class="col m6">
+                                    <div class="post-resumo">
+                                        <!--Resumo da notícia-->
+                                        <span class="post-content">
+                                            <?php echo $post->content;  ?>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--Fim da coluna do resumo da notícia-->
+                            </div>
+                            <!--Fim da linha da imagem e do resumo -->
                         </div>
+                        <!-- Fim do card da notícia -->
                     </a>
                 </div>
                 @endforeach
             </div>
+            <!-- Fim da coluna dos posts para telas grandes -->
+
             <div class="col m4 hide-on-med-and-down">
                 <div class="card-panel">
                     <span class="card-title">
