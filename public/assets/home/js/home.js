@@ -1,6 +1,10 @@
 $(document).ready(function () {
 
-    var text = $('.post-content:first-child').children('p:first-child');
-    $('.post-content').children().remove();
-    $('.post-content').append(text);
+    $('.post-content').each(function () {
+       let fc = $(this).children('p:first-child');
+       $(this).children().remove();
+       $(this).append(fc);
+    });
+
+
 });
