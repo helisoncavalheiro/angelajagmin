@@ -1,0 +1,47 @@
+
+/*Adiciona margem para o card da notícia */
+.card-noticia{
+    margin: 1rem 0 0 0;
+    padding: 12px;
+}
+
+.card-noticia .row{
+    margin-bottom: 0;
+}
+/*Adiciona padding para o conteúdo da notícia
+  e configura a cor dos links para preto
+ */
+.post-resumo{
+    padding: 0 12px;
+}
+
+/*Troca a cor, alinhamento e tamanho do resumo do post */
+.post-content {
+    font-size: 16px;
+    text-align: justify;
+    color: #444444;
+}
+
+.post-title{
+    color: black;
+    font-size: 36px;
+    line-height: 32px;
+    font-weight: 400;
+    display: block;
+}
+
+.post-header{
+    padding: 0 12px;
+    margin-bottom: 0;
+}
+
+.post-update{
+    color: black;
+    font-size: 14px;
+    margin: 14px 12px 0;
+}
+
+.post-author{
+    color: black;
+    margin: 14px 12px 0;
+}
