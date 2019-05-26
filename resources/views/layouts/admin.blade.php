@@ -82,7 +82,7 @@
 -->
 
 <!--  Scripts-->
-<script src="{{ asset('assets/materialize/materialize.js') }}"></script>
+<script src="{{ secure_asset('assets/materialize/materialize.js') }}"></script>
 </body>
 
 </html>

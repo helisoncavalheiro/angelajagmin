@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>Ângela Carreta</title>
     <!-- CSS  -->
-    <link href="{{ asset('assets/home/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{{ asset('assets/materialize/materialize.css') }}" type="text/css" rel="stylesheet"
+    <link href="{{ secure_asset('assets/home/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ secure_asset('assets/materialize/materialize.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -21,7 +21,7 @@
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo logo"><p>Ângela Jagmin Carretta</p></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a class="nav-item" href=" {{action('Home\PostController@index')}} ">Início</a></li>
+                    <li><a class="nav-item" href=" {{ action('Home\PostController@index')}} ">Início</a></li>
                     <li><a class="nav-item" href="#">Projetos</a></li>
                     <li><a class="nav-item" href="#">Categorias</a></li>
                     <li><a class="nav-item">Sobre mim</a></li>
@@ -81,8 +81,8 @@
 </footer>
 
 <!--  Scripts-->
-<script src="{{ asset('assets/materialize/materialize.js') }}"></script>
-<script src="{{ asset('assets/home/js/script.js') }}"></script>
+<script src="{{ secure_asset('assets/materialize/materialize.js') }}"></script>
+<script src="{{ secure_asset('assets/home/js/script.js') }}"></script>
 
 </body>
 

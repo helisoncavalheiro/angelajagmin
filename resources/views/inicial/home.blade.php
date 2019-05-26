@@ -3,7 +3,7 @@
 
 
 @section('content')
-    <link href="{{ asset('assets/home/css/home.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{{ secure_asset('assets/home/css/home.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
 <main>
     <!-- Seção de posts -->
     <div class="section">
@@ -41,7 +41,7 @@
                                 <!--Coluna da imagem da notícia-->
                                 <div class="col m6">
 
-                                    <img class="responsive-img" src="{{ asset($post->images->first()->filepath)  }}">
+                                    <img class="responsive-img" src="{{ secure_asset($post->images->first()->filepath)  }}">
                                 </div>
                                 <!--Fim da coluna da imagem da notícia-->
 
@@ -114,5 +114,5 @@
     </div>
 </main>
 <!-- Scripts da página home -->
-<script src="{{ asset('assets/home/js/home.js') }}"></script>
+<script src="{{ secure_asset('assets/home/js/home.js') }}"></script>
 @endsection
