@@ -29,7 +29,7 @@
           <div class="file-field input-field">        
             <div class="btn">
               <span>Selecione...</span>
-              <input type="file" name="images[]" multiple="" />
+              <input id="images" type="file" name="images[]" multiple="" />
             </div>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
@@ -84,4 +84,8 @@
     </div>
   </div>
 </div>
+
+<!-- Scripts do CKEditor-->
+<script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/admin/js/form_editor.js') }}"></script>
 @endsection

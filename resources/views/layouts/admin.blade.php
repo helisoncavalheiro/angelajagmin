@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Ângela Carreta</title>
   <!-- CSS  -->
-  <link href="{{ asset('assets/css/admin-style.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="{{ asset('assets/admin/css/admin-style.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{{ asset('assets/css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="{{ asset('assets/materialize/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
@@ -54,17 +55,17 @@
       </div>
 
 
-      <!-- INÍCIO DO CONTEÚDO DINÂMICO
+      <!--
 
-      ***NOTE: Todo o conteúdo dinâmico deve ter uma tag div que seja
-      pai de todas com a class="col m10 push-m3"
-    -->
+      INÍCIO DO CONTEÚDO DINÂMICO
+      ***NOTE: Todo o conteúdo dinâmico deve ter uma tag div que seja pai de todas com a class="col m10 push-m3"
+      -->
 
     @yield('admin-content')
 
     <!--
     FIM DO CONTEÚDO DINÂMICO
-  -->
+    -->
 </div>
 </main>
 
@@ -79,15 +80,9 @@
   </div>
 </footer>
 -->
-</body>
 
 <!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{{ asset('assets/js/materialize.js') }}"></script>
-<script src="{{ asset('assets/js/init.js') }}"></script>
-<script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
-<script src="{{ asset('assets/js/script.js') }}"></script>
-
 </body>
 
 </html>
