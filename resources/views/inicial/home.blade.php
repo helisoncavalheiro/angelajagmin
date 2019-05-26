@@ -14,7 +14,7 @@
                 <!-- Para cada post no array de posts -->
                 @foreach($posts as $post)
                 <!-- Card do post -->
-                <div class="card row show-on-medium-and-up hide-on-small-only hoverable">
+                <div class="section card row show-on-medium-and-up hide-on-small-only hoverable">
                     <!-- Link que direciona para a página do post-->
                     <a href="post/{{ $post->id }}">
                         <!--Card da notícia (adiciona margem)-->

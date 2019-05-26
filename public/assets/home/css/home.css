@@ -1,8 +1,8 @@
 
 /*Adiciona margem para o card da notícia */
 .card-noticia{
-    margin: 1rem 0 0 0;
-    padding: 12px;
+    margin: 1rem 1rem;
+
 }
 
 .card-noticia .row{
@@ -28,6 +28,8 @@
     line-height: 32px;
     font-weight: 400;
     display: block;
+    margin-top: 12px;
+    margin-bottom: 15px;
 }
 
 .post-header{
@@ -36,12 +38,12 @@
 }
 
 .post-update{
-    color: black;
+    color: #505050;
     font-size: 14px;
     margin: 14px 12px 0;
 }
 
 .post-author{
-    color: black;
+    color: #505050;
     margin: 14px 12px 0;
 }
