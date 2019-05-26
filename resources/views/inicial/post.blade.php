@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('content')
-
+<link href="{{ asset('assets/css/home/post.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 <main class="section">
 
 	<div class="row center-align">

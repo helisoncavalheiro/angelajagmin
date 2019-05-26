@@ -3,6 +3,7 @@
 
 
 @section('content')
+    <link href="{{ asset('assets/home/css/home.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
 <main>
     <!-- Seção de posts -->
     <div class="section">
@@ -112,5 +113,6 @@
         </div>
     </div>
 </main>
-
+<!-- Scripts da página home -->
+<script src="{{ asset('assets/home/js/home.js') }}"></script>
 @endsection

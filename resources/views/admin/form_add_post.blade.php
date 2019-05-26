@@ -84,4 +84,8 @@
     </div>
   </div>
 </div>
+
+<!-- Scripts do CKEditor-->
+<script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/admin/js/form_editor.js') }}"></script>
 @endsection
