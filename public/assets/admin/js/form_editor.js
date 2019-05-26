@@ -1,4 +1,3 @@
-$(document).ready(function () {
     ClassicEditor
         .create( document.querySelector( '#content' ), {
             toolbar: [ 'heading', '|', 'bold', 'italic', 'alignment', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
@@ -13,4 +12,26 @@ $(document).ready(function () {
         .catch( error => {
             console.log( error );
         } );
+var images = new Array();
+$(document).ready(function () {
+
+    var imagesInput = document.getElementById("images");
+    $("#images").change(function () {
+        handleFileChange(imagesInput);
+        console.log(images);
+    })
+
+    /*
+    $("#postForm").submit(function(event) {
+        event.preventDefault();
+        $("#images").val(images);
+    });
+    */
 });
+
+function handleFileChange(imagesInput){
+    let files = imagesInput.files;
+    for(let i = 0; i<files.length ;i++){
+        this.images.push(files[i]);
+    }
+}
