@@ -1,4 +1,23 @@
-.publicacao-texto{
-    font-size: 18px;
+.publicacao-texto p{
+    font-size: 16px;
     text-align: justify;
+}
+
+.slider-button{
+    height: 50px;
+    width: 50px;
+}
+
+.post-title{
+    margin: 0;
+}
+
+.post-update{
+    color: #505050;
+    font-size: 14px;
+    margin: 0;
+}
+.post-author{
+    color: #505050;
+    margin: 0 12px 0;
 }
