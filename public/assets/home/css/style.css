@@ -5,7 +5,15 @@
  *
  * Made By MaterializeCSS.com
  */
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
 
+main {
+	flex: 1 0 auto;
+}
 .icon-block {
 	padding: 0 15px;
 }
@@ -14,6 +22,12 @@
 }
 
 .nav-item {
-	font-size: 20px;
+	color: #1d1d1d;
+	font-size: 26px;
+}
+
+.nav-logo{
+	margin-top: 8px;
+	margin-left: 100px;
 }
 

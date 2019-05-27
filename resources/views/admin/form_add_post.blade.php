@@ -25,14 +25,14 @@
 
         <!--input da imagem principal -->
         <div class="section">
-          <label>Imagem: </label>
-          <div class="file-field input-field">        
-            <div class="btn">
+          <label>Imagens: </label>
+          <div class="file-field input-field">
+            <div class="btn light-blue lighten-1">
               <span>Selecione...</span>
               <input id="images" type="file" name="images[]" multiple="" />
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
+              <input class="file-path validate" placeholder="Selecione alguma imagem..." type="text">
             </div>
           </div>
         </div>
@@ -47,11 +47,11 @@
         </div>
 
 
-        <!-- input dos arquivos-->
+        <!-- input dos arquivos
         <div class="section">
           <label>Arquivos:</label>
           <div class="file-field input-field">
-            <div class="btn">
+            <div class="btn light-blue lighten-1">
               <span>Selecione...</span>
               <input type="file" multiple="" name="files[]">
             </div>
@@ -62,21 +62,27 @@
           <br />
           <div class="divider"></div>
         </div>
+        -->
 
 
-
-        <!--opções save -->
+        <!--Status do post -->
         <div class="row section">
-          <div class="switch col s3">
-            <label>
-              Ativo
-              <input type="checkbox" name="status">
-              <span class="lever"></span>
-            </label>
+          <div class="switch col s4 left">
+            <label class="red-text">Inativo</label>
+              <label>
+                <input class="green" type="checkbox" name="status">
+                <span class="lever"></span>
+              </label>
+            <label class="green-text">Ativo</label>
           </div>
-          <button class="col s2 btn waves-effect waves-light" type="submit" name="action">Salvar
-            <i class="material-icons right">send</i>
-          </button>
+        </div>
+
+        <!-- Botão de salvar -->
+        <div class="row section">
+            <button class="col s2 offset-s5 btn waves-effect waves-light green" type="submit" name="action">
+              <i class="material-icons right">send</i>
+              Salvar
+            </button>
         </div>
 
 

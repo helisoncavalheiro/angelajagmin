@@ -14,6 +14,7 @@
                 <!-- Para cada post no array de posts -->
                 @foreach($posts as $post)
                 <!-- Card do post -->
+                @if($post->status == "on")
                 <div class="section card row show-on-medium-and-up hide-on-small-only hoverable">
                     <!-- Link que direciona para a página do post-->
                     <a href="post/{{ $post->id }}">
@@ -30,9 +31,9 @@
 
                             <div class="row">
                                 <!-- Última atualização do post -->
-                                <p class="col s3 post-update valign-wrapper"><i class="material-icons left tiny">access_time</i> {{ $post->updated_at  }}</p>
+                                <p class="col s5 post-update valign-wrapper "><i class="material-icons left tiny">access_time</i>Atualizado em {{ $post->updated_at  }}</p>
                                 <!--Autor do post -->
-                                <p class="col s5pp post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i> Ângela Jagmin Carretta </p>
+                                <p class="col s5 pull-s1 post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i>por Ângela Jagmin Carretta </p>
                             </div>
 
                             <!-- Linha da imagem e do resumo -->
@@ -61,6 +62,7 @@
                         <!-- Fim do card da notícia -->
                     </a>
                 </div>
+                @endif
                 @endforeach
             </div>
             <!-- Fim da coluna dos posts para telas grandes -->
@@ -70,6 +72,7 @@
                     <span class="card-title">
                         <h4>Mais Clicadas:</h4>
                     </span>
+                    <!--
                     <div class="card-content row">
                         <ul class="col s10 push-m2">
                             <li><a href="#">Jogos para ensino da matemática</a></li>
@@ -81,6 +84,7 @@
                             <li><a href="#">Test 1 </a></li>
                         </ul>
                     </div>
+                    -->
                 </div>
             </div>
         </div>

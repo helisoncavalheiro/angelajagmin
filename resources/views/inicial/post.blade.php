@@ -6,6 +6,7 @@
 <main class="section">
 
 	<div class="row">
+		<!--
 		<div class="col m2 show-on-medium-and-up hide-on-small-and-down">
 			<div class="card-panel">
 				<span class="">
@@ -20,8 +21,8 @@
 				</ul>
 			</div>
 		</div>
-
-		<div class="col s12 m7 ">
+		-->
+		<div class="col s12 m7 push-m2 ">
 			<div class="card-panel">
 				<div class="row">
 					<span class="header col s12">
@@ -30,9 +31,9 @@
 				</div>
 				<div class="row">
 					<!-- Última atualização do post -->
-					<p class="col s3 post-update valign-wrapper"><i class="material-icons left tiny">access_time</i> {{ $post->updated_at  }}</p>
+					<p class="col s5 post-update valign-wrapper"><i class="material-icons left tiny">access_time</i>Atualizado em {{ $post->updated_at  }}</p>
 					<!--Autor do post -->
-					<p class="col s5pp post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i> Ângela Jagmin Carretta </p>
+					<p class="col s5 post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i> por Ângela Jagmin Carretta</p>
 				</div>
 				<div class="row">
 					<div class="col s12">
@@ -42,11 +43,17 @@
 					</div>
 				</div>
 
+				<!-- Carrossel de imagens -->
+				<div class="row">
+					<h5 class="col s10 offset-m1">Galeria de imagens:</h5>
+				</div>
 				<div class="row valign-wrapper">
-
-						<i class="deep-orange lighten-1 material-icons medium left">chevron_left</i>
-
-					<div class="carousel carousel-slider">
+					<div class="col s1">
+						<a href="#!" id="slider-button-left">
+							<i class="material-icons medium right deep-orange-text lighten-1">chevron_left</i>
+						</a>
+					</div>
+					<div class="col s10 carousel carousel-slider">
 						@foreach($post->images as $i)
 						<div class="col s10">
 							<a class="carousel-item" href="#one!">
@@ -55,8 +62,10 @@
 						</div>
 						@endforeach
 					</div>
-					<div class="col s1 deep-orange lighten-1 circle slider-button valign-wrapper">
-						<i class="left material-icons medium">chevron_right</i>
+					<div class="col s1">
+						<a href="#!" id="slider-button-right">
+							<i class="material-icons medium left deep-orange-text lighten-1">chevron_right</i>
+						</a>
 					</div>
 				</div>
 			</div>

@@ -3,13 +3,12 @@
     text-align: justify;
 }
 
-.slider-button{
-    height: 50px;
-    width: 50px;
-}
-
 .post-title{
     margin: 0;
+}
+
+.slider-icon:hover{
+    color: black;
 }
 
 .post-update{

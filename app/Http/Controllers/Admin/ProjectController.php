@@ -17,7 +17,7 @@ class ProjectController extends Controller
         //nova instância de um projeto
         $projetos = Project::all();
         //retorna a view projetos passando como parâmetro o array de projetos
-        return view('admin.projetos', [
+        return view('admin.projects', [
             'projetos' => $projetos
         ]);
     }

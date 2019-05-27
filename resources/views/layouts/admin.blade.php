@@ -24,7 +24,14 @@
     <div class="nav-wrapper navbar-fixed">
 
       <nav class="top-nav deep-orange lighten-1">
-        <a href="#" class="left brand-logo">Blog Ângela Carretta - Área Administrativa</a>
+        <div class="left brand-logo ">
+          <div class="valign-wrapper">
+            <img  src="{{ secure_asset('assets/images/brand-logo.png') }}">
+            <a href="{{ action('Home\PostController@index') }}" class="black-text" style="margin-left: 5px"> - Área Administrativa</a>
+          </div>
+        </div>
+
+        <!--
         <ul class="right">
           <div class="valign-wrapper">          
             <li>
@@ -36,6 +43,7 @@
             </li>
           </div>
         </ul>
+        -->
       </nav>
     </div>
   </header>
