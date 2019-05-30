@@ -65,7 +65,7 @@ class PostController extends Controller
             $post->images()->save($image);
         }
 
-        return $this->index();
+        dd($post);
     }
 
     /**
