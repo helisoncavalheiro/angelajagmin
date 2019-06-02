@@ -16,10 +16,13 @@
           type="text"
           name="title"
           placeholder="Insira um título"
-          class="tooltipped"
+          class="tooltipped validate"
           data-position="bottom"
           data-tooltip="O título fica em negrito por padrão"
           />
+          @error('title')
+          <span class="helper-text errors">{{ $message }}</span>
+          @enderror
         </div>
 
 
@@ -35,6 +38,12 @@
               <input class="file-path validate" placeholder="Selecione alguma imagem..." type="text">
             </div>
           </div>
+          @error('images')
+            <span class="helper-text errors">{{ $message }}</span>
+          @enderror
+          @error('images.*')
+            <span class="helper-text errors">{{ $message }}</span>
+          @enderror
         </div>
 
 
@@ -44,6 +53,9 @@
           <textarea name="content" id="content" rows="20"></textarea>
           <br/>
           <div class="divider"></div>
+          @error('content')
+            <span class="helper-text errors">{{ $message }}</span>
+          @enderror
         </div>
 
 
@@ -84,8 +96,6 @@
               Salvar
             </button>
         </div>
-
-
       </form>
     </div>
   </div>

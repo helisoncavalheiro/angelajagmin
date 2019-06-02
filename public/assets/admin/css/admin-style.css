@@ -11,3 +11,7 @@ footer{
 	position: fixed;
 	height: 100%;
 }
+
+.errors{
+    color: #D32F2F;
+}
