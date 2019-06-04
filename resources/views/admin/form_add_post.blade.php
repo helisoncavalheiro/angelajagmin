@@ -4,7 +4,7 @@
 <div class="col m9 push-m3">
   <div class="container">
     <div class="section">
-      <form method="POST" enctype="multipart/form-data" action="{{ action('Admin\PostController@store') }}">
+      <form id="form" method="POST" enctype="multipart/form-data" action="{{ action('Admin\PostController@store') }}">
 
       {{ csrf_field() }}
 
@@ -44,6 +44,9 @@
           @error('images.*')
             <span class="helper-text errors">{{ $message }}</span>
           @enderror
+          <div class="images-preview row">
+          </div>
+
         </div>
 
 
@@ -91,7 +94,7 @@
 
         <!-- Botão de salvar -->
         <div class="row section">
-            <button class="col s2 offset-s5 btn waves-effect waves-light green" type="submit" name="action">
+            <button id="submit" class="col s2 offset-s5 btn waves-effect waves-light green" type="submit" name="action">
               <i class="material-icons right">send</i>
               Salvar
             </button>

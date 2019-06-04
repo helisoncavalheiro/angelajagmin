@@ -45,6 +45,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $path = "images/posts";
         //Regras de validação
         $rules = [
@@ -138,7 +139,15 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+
+        $images = $request->images;
+        foreach($images as $image){
+
+        }
+
     }
 
     /**
