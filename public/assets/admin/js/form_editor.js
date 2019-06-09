@@ -15,24 +15,23 @@ ClassicEditor
 
 var images = new Array();
 $(document).ready(function () {
-
     var imagesInput = document.getElementById("images");
     $("#images").change(function () {
-        handleFileChange(imagesInput);
-        showImages();
-        console.log(images);
+        handleFileChange(imagesInput, showImages);
     });
+
     $("#submit").click(function (e) {
         sendForm(e);
     });
 
 });
 
-function handleFileChange(imagesInput) {
+function handleFileChange(imagesInput, callback) {
     let files = imagesInput.files;
     for (let i = 0; i < files.length; i++) {
         this.images.push(files[i]);
     }
+    callback();
 }
 
 function showImages() {
@@ -49,10 +48,9 @@ function showImages() {
         imgprev[0].appendChild(img);
     }
 }
-
-
+/*
 function sendForm(evt) {
     evt.preventDefault();
     evt.stopPropagation();
-    let =
 }
+*/

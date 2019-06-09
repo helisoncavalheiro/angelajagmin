@@ -41,8 +41,7 @@
 
                                 <!--Coluna da imagem da notícia-->
                                 <div class="col m6">
-
-                                    <img class="responsive-img" src="{{ secure_asset($post->images->first()->filepath)  }}">
+                                    <img class="responsive-img" src="{{ secure_asset('storage/' . $post->images->first()->filepath)  }}">
                                 </div>
                                 <!--Fim da coluna da imagem da notícia-->
 

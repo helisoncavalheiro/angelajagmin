@@ -45,7 +45,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
         $path = "images/posts";
         //Regras de validação
         $rules = [
@@ -97,7 +97,7 @@ class PostController extends Controller
             // cria um novo objeto da Imagem
             // configurando o caminho da imagem armazenada
             $image = new Image([
-                'filepath' => 'storage/' . $filename
+                'filepath' => $filename
             ]);
             //Salva o objeto da imagem no banco
             $post->images()->save($image);
@@ -139,15 +139,54 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::find($id);
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
+      //dd($request->all());
+      $rules = [
+          //Título obrigatório
+          'title' => 'required',
 
-        $images = $request->images;
-        foreach($images as $image){
+          //Conteúdo obrigatório
+          'content' => 'required',
 
-        }
+          /*
+           * As imagens são obrigatórias
+           * Deve ser um array
+           * Deve ter no mínimo 1 imagem
+          */
+          'images' => 'required|array|min:1',
 
+          //Cada imagem do array de imagens deve ter um dos tipos abaixo
+          'images.*' => 'image'
+
+          //Adicionar as regras para autor e projeto quando for possível
+      ];
+
+      //Mensagens de erro customizadas
+      $messages = [
+          'title.required' => 'O título é obrigatório.',
+          'content.required' => 'É necessário fornecer um conteúdo.',
+          'images.required' => 'Selecione pelo menos 1 imagem.',
+          'images.*.image' => 'Apenas arquivos com as extensões .jpeg, .png, .bmp, .gif ou .svg são aceitos.'
+      ];
+
+      //Validação dos dados
+      /*
+       * Caso haja algum erro, o usuário será redirecionado para a
+       * página anterior e os erros serão exibidos na tela.
+       * Caso os dados sejam validados, o código segue executando
+       */
+      $request->validate($rules, $messages);
+
+      $post = new Post();
+
+      $title = $request->input('title');
+      $images = $request->file('images');
+      $content = $request->input('content');
+      $status = $request->input('status');
+
+      $post->updatePost($id, $title, $content, $images, $status);
+
+      //Retorna para o index
+      return $this->index();
     }
 
     /**

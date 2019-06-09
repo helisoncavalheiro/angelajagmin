@@ -32,7 +32,7 @@
 				<tbody>
 					@foreach($posts as $p)
 					<tr>
-						<td>{{ $p->id }}</td>
+            <td><a href="post/{{ $p->id }}/edit">{{ $p->id }}</a></td>
 						<td>{{ $p->title }}</td>
 						<td>{{ $p->author }}</td>
 						<td>{{ $p->created_at }}</td>

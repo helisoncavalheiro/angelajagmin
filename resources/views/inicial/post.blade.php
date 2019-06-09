@@ -57,7 +57,7 @@
 						@foreach($post->images as $i)
 						<div class="col s10">
 							<a class="carousel-item" href="#one!">
-								<img src="{{ secure_asset($i->filepath) }}">
+								<img src="{{ secure_asset('storage/'.$i->filepath) }}">
 							</a>
 						</div>
 						@endforeach
