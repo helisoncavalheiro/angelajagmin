@@ -21,6 +21,7 @@
 			<table>
 				<thead>
 					<tr>
+						<th>Editar</th>
 						<th>ID</th>
 						<th>Título</th>
 						<th>Autor</th>
@@ -32,7 +33,12 @@
 				<tbody>
 					@foreach($posts as $p)
 					<tr>
-            <td><a href="post/{{ $p->id }}/edit">{{ $p->id }}</a></td>
+						<td>
+							<a href="{{ action('Admin\PostController@edit', ['id' => $p->id ]) }}">
+								<i class="material-icons">edit</i>
+							</a>
+						</td>
+            <td>{{ $p->id }}</td>
 						<td>{{ $p->title }}</td>
 						<td>{{ $p->author }}</td>
 						<td>{{ $p->created_at }}</td>
