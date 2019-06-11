@@ -14,7 +14,10 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $author = Author::all();
+        return view('admin.authors', [
+            "author" => $author
+        ]);
     }
 
     /**
@@ -24,7 +27,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.register');
     }
 
     /**
@@ -35,7 +38,33 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+      $rules = [
+            'name' => ['required', 'string'],
+            'role' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:authors'],
+            'password' => ['required', 'string']
+      ];
+
+      $messages = [
+        'name.required' => 'Nome é obrigatório.',
+        'role.required' => 'Papel é obrigatório.',
+        'email.required' => 'Email é obrigatório.',
+        'email.email' => 'Deve ser um email válido (Ex.: exemplo@gmail.com).',
+        'password.required' => 'Senha é obrigatória.',
+      ];
+
+      $request->validate($rules, $messages);
+
+      $data['name'] = $request->input('name');
+      $data['role'] = $request->input('role');
+      $data['email'] = $request->input('email');
+      $data['password'] = $request->input('password');
+
+      $author = new Author();
+      $author->new($data);
+
+      return view('admin.authors');
     }
 
     /**

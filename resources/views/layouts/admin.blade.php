@@ -33,7 +33,7 @@
 
         <!--
         <ul class="right">
-          <div class="valign-wrapper">          
+          <div class="valign-wrapper">
             <li>
               <a class="dropdown-trigger" href="#!" data-target="dropdown1">
                 <i class="material-icons left">account_circle</i>
@@ -58,7 +58,7 @@
           <br/>
           <li><a class="white-text" href="#"><i class="material-icons left">bookmark</i>Categorias</a></li>
           <br/>
-          <li><a class="white-text" href="#"><i class="material-icons left">person</i>Usuários</a></li>
+          <li><a class="white-text" href="{{ action('Admin\AuthorController@index') }}"><i class="material-icons left">person</i>Usuários</a></li>
         </ul>
       </div>
 
