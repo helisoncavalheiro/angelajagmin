@@ -13,44 +13,91 @@ ClassicEditor
         console.log(error);
     });
 
-var images = new Array();
-$(document).ready(function () {
-    var imagesInput = document.getElementById("images");
-    $("#images").change(function () {
-        handleFileChange(imagesInput, showImages);
-    });
 
-    $("#submit").click(function (e) {
-        sendForm(e);
+var new_images = new Array();
+var form = document.getElementById('form');
+var imgprev = document.getElementsByClassName("new_images")[0];
+var lastImageInput;
+var imagesCounter = 0;
+document.addEventListener('DOMContentLoaded', function(){
+    if(imagesCounter == 0){
+        let divInputImage = document.createElement("DIV");
+        let divInputFile = document.createElement("DIV");
+        let inputImage = document.createElement("INPUT");
+        let btnImage = document.createElement("DIV");
+        let iconAddImage = document.createElement("I");
+
+        divInputImage.setAttribute("class", "col s3");
+        divInputFile.setAttribute("class", "file-field input-field");
+        inputImage.setAttribute("type", "file");
+        btnImage.setAttribute("class", "btn-large blue");
+        inputImage.setAttribute("name", imagesCounter.toString());
+        iconAddImage.setAttribute("class", "material-icons");
+        iconAddImage.innerHTML = "add";
+
+        btnImage.appendChild(iconAddImage);
+        btnImage.appendChild(inputImage);
+        divInputFile.appendChild(btnImage);
+        divInputImage.appendChild(divInputFile);
+        imgprev.appendChild(divInputImage);
+        console.log(imgprev.lastChild);
+        lastImageInput = imgprev.lastChild;
+
+        //INCREMENTS IMAGE COUNTER
+        imagesCounter ++;
+    }
+
+    imgprev.querySelector("input[type=file]").addEventListener('change', function(){
+        // HIDE INPUT
+        lastImageInput.setAttribute("hidden", "");
+
+
+        //SHOW THE SELECTED IMAGE
+        let img = document.createElement("img");
+        let divWrapper = document.createElement("div");
+
+        divWrapper.setAttribute("class", "col s3");
+        let file = lastImageInput.querySelector("input[type=file]").files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onloadend = function(){
+            img.setAttribute("src", reader.result);
+            img.setAttribute("class", "responsive-img" );
+            divWrapper.appendChild(img);
+        }
+
+        imgprev.appendChild(divWrapper);
+
+
+        //ADD A NEW IMAGE INPUT
+        let divInputImage = document.createElement("DIV");
+        let divInputFile = document.createElement("DIV");
+        let inputImage = document.createElement("INPUT");
+        let btnImage = document.createElement("DIV");
+        let iconAddImage = document.createElement("I");
+
+        divInputImage.setAttribute("class", "col s3");
+        divInputFile.setAttribute("class", "file-field input-field");
+        inputImage.setAttribute("type", "file");
+        btnImage.setAttribute("class", "btn-large blue");
+        inputImage.setAttribute("name", imagesCounter.toString());
+        iconAddImage.setAttribute("class", "material-icons");
+        iconAddImage.innerHTML = "add";
+
+        btnImage.appendChild(inputImage);
+        btnImage.appendChild(iconAddImage);
+        divInputFile.appendChild(btnImage);
+        divInputImage.appendChild(divInputFile);
+        imgprev.appendChild(divInputImage);
+        console.log(imgprev.lastChild);
+        lastImageInput = imgprev.lastChild;
+
+
+        //INCREMENTS IMAGE COUNTER
+        imagesCounter ++;
+        console.log(imagesCounter);
+
     });
 
 });
-
-function handleFileChange(imagesInput, callback) {
-    let files = imagesInput.files;
-    for (let i = 0; i < files.length; i++) {
-        this.images.push(files[i]);
-    }
-    callback();
-}
-
-function showImages() {
-    for(let i=0; i<images.length ; i++){
-        let file = images[i];
-        var reader = new FileReader();
-        let imgprev = document.getElementsByClassName("images-preview");
-        var img = document.createElement("img");
-        reader.onloadend = function(){
-            img.src = reader.result;
-            img.setAttribute("class", "col s3 responsive-img" );
-        }
-        reader.readAsDataURL(file);
-        imgprev[0].appendChild(img);
-    }
-}
-/*
-function sendForm(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
-}
-*/
