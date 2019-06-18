@@ -77,11 +77,14 @@
               <div class='row'>
                 <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</button>
               </div>
+              <!--
+              Botão de registrar
               <div class="row">
                 <a href="{{ action('Admin\AuthorController@create') }}">
                   Criar conta
                 </a>
               </div>
+            -->
             </center>
           </form>
         </div>
