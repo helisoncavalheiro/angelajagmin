@@ -27,27 +27,26 @@
 
 
         <!--input da imagem principal -->
-        <div class="section">
-          <label>Imagens: </label>
-          <div class="file-field input-field">
-            <div class="btn light-blue lighten-1">
-              <span>Selecione...</span>
-              <input id="images" type="file" name="images[]" multiple="" />
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" placeholder="Selecione alguma imagem..." type="text">
-            </div>
-          </div>
-          @error('images')
-            <span class="helper-text errors">{{ $message }}</span>
-          @enderror
-          @error('images.*')
-            <span class="helper-text errors">{{ $message }}</span>
-          @enderror
-          <div class="images-preview row">
-          </div>
+          <div class="section">
+              <label>Imagens </label>
+              <div class="images-preview section">
+                  @if(isset($post))
+                  <label>Imagens já carregadas:</label>
+                  <div class="old_images row">
+                      @foreach($post->images as $img)
+                          <div class="col s3">
+                              <input hidden value="{{ $img->id }}"/>
+                              <img src="{{ secure_asset('storage/' . $img->filepath) }}" class="responsive-img" />
+                          </div>
+                      @endforeach
+                  </div>
+                  @endif
+                  <label>Novas imagens:</label>
+                  <div class="new_images row">
 
-        </div>
+                  </div>
+              </div>
+          </div>
 
 
         <!--editor de texto -->

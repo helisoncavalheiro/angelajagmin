@@ -64,10 +64,7 @@ class PostController extends Controller
              * Deve ser um array
              * Deve ter no mínimo 1 imagem
             */
-            'images' => 'required|array|min:1',
-
-            //Cada imagem do array de imagens deve ter um dos tipos abaixo
-            'images.*' => 'image'
+            'images' => 'required|image',
 
             //Adicionar as regras para autor e projeto quando for possível
         ];
@@ -143,7 +140,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-      //dd($request->all());
+      dd($request->all());
       $rules = [
           //Título obrigatório
           'title' => 'required',
@@ -156,10 +153,7 @@ class PostController extends Controller
            * Deve ser um array
            * Deve ter no mínimo 1 imagem
           */
-          'images' => 'required|array|min:1',
-
-          //Cada imagem do array de imagens deve ter um dos tipos abaixo
-          'images.*' => 'image'
+          'images' => 'required|image',
 
           //Adicionar as regras para autor e projeto quando for possível
       ];
@@ -169,7 +163,7 @@ class PostController extends Controller
           'title.required' => 'O título é obrigatório.',
           'content.required' => 'É necessário fornecer um conteúdo.',
           'images.required' => 'Selecione pelo menos 1 imagem.',
-          'images.*.image' => 'Apenas arquivos com as extensões .jpeg, .png, .bmp, .gif ou .svg são aceitos.'
+          'images.image' => 'Apenas arquivos com as extensões .jpeg, .png, .bmp, .gif ou .svg são aceitos.'
       ];
 
       //Validação dos dados
