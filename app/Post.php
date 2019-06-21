@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     public function author()
     {
     	return $this->belongsTo('App\Author');
@@ -60,5 +63,16 @@ class Post extends Model
           //Salva o objeto da imagem no banco
           $post->images()->save($image);
         }
+    }
+
+
+    public function deletePost($post){
+
+        $images = $post->images();
+
+        foreach ($images as $i){
+            Image::destroy($i->id);
+        }
+        Post::destroy($post->id);
     }
 }

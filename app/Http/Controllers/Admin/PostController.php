@@ -201,6 +201,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->deletePost($post);
+        return $this->index();
     }
 }
