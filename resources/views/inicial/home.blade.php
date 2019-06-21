@@ -30,10 +30,11 @@
                             </div>
 
                             <div class="row">
-                                <!-- Última atualização do post -->
+                                <!-- Última atualização do post
                                 <p class="col s5 post-update valign-wrapper "><i class="material-icons left tiny">access_time</i>Atualizado em {{ $post->updated_at  }}</p>
+                                -->
                                 <!--Autor do post -->
-                                <p class="col s5 pull-s1 post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i>por Ângela Jagmin Carretta </p>
+                                <p class="col s5 post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i>por Ângela Jagmin Carretta </p>
                             </div>
 
                             <!-- Linha da imagem e do resumo -->
@@ -65,13 +66,13 @@
                 @endforeach
             </div>
             <!-- Fim da coluna dos posts para telas grandes -->
-
+            <!--
             <div class="col m4 hide-on-med-and-down">
                 <div class="card-panel">
                     <span class="card-title">
                         <h4>Mais Clicadas:</h4>
                     </span>
-                    <!--
+
                     <div class="card-content row">
                         <ul class="col s10 push-m2">
                             <li><a href="#">Jogos para ensino da matemática</a></li>

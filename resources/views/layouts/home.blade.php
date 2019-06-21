@@ -47,7 +47,7 @@
 </header>
 
 @yield('content')
-
+<!--
 <footer class="page-footer deep-orange lighten-1">
     <div class="container">
         <div class="row">
@@ -73,7 +73,7 @@
         </div>
     </div>
 </footer>
-
+-->
 <!--  Scripts-->
 <script src="{{ secure_asset('assets/materialize/materialize.js') }}"></script>
 <script src="{{ secure_asset('assets/home/js/script.js') }}"></script>

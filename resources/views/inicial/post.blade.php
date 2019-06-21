@@ -30,9 +30,10 @@
 					</span>
 				</div>
 				<div class="row">
-					<!-- Última atualização do post -->
+					<!-- Última atualização do post
 					<p class="col s5 post-update valign-wrapper"><i class="material-icons left tiny">access_time</i>Atualizado em {{ $post->updated_at  }}</p>
-					<!--Autor do post -->
+					-->
+                    <!--Autor do post -->
 					<p class="col s5 post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i> por Ângela Jagmin Carretta</p>
 				</div>
 				<div class="row">
