@@ -50,7 +50,7 @@
                                     <div class="post-resumo">
                                         <!--Resumo da notícia-->
                                         <span class="post-content">
-                                            <?php echo $post->content;  ?>
+                                            <?php echo $post->abstract; ?>
                                         </span>
                                     </div>
                                 </div>

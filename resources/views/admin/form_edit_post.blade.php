@@ -26,6 +26,19 @@
           @enderror
         </div>
 
+            <!--editor do resumo -->
+            <div class="section">
+                <label for="content">Resumo: (Texto que aparece na página inicial. Máximo 500 caracteres.) </label>
+                <textarea name="abstract" id="abstract" rows="20" value="{{$post->abstract}}">
+                    &lt;p>{{$post->abstract}}&lt;/p>
+                </textarea>
+                <br/>
+                <div class="divider"></div>
+                @error('abstract')
+                <span class="helper-text errors">{{ $message }}</span>
+                @enderror
+            </div>
+
 
         <!--input da imagem principal -->
         <div class="section">
