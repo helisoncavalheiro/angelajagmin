@@ -31,17 +31,15 @@ class Post extends Model
     protected $fillable = [
         "title",
         "content",
-        "status",
         "project",
         "author"
     ];
 
-    public function updatePost($id, $title, $content, $images, $status){
+    public function updatePost($id, $title, $content, $images){
         $post = Post::find($id);
 
         $post->title = $title;
         $post->content = $content;
-        $post->status = $status;
         $post->save();
         $old_images = $post->images;
 

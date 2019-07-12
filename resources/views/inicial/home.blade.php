@@ -14,7 +14,6 @@
                 <!-- Para cada post no array de posts -->
                 @foreach($posts as $post)
                 <!-- Card do post -->
-                @if($post->status == "on")
                 <div class="section card row show-on-medium-and-up hide-on-small-only hoverable">
                     <!-- Link que direciona para a página do post-->
                     <a href="post/{{ $post->id }}">
@@ -62,7 +61,6 @@
                         <!-- Fim do card da notícia -->
                     </a>
                 </div>
-                @endif
                 @endforeach
             </div>
             <!-- Fim da coluna dos posts para telas grandes -->

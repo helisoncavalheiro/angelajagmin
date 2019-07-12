@@ -80,7 +80,7 @@
         -->
 
 
-        <!--Status do post -->
+        <!--Status do post
         <div class="row section">
           <div class="switch col s4 left">
             <label class="red-text">Inativo</label>
@@ -91,7 +91,7 @@
             <label class="green-text">Ativo</label>
           </div>
         </div>
-
+        -->
         <!-- Botão de salvar -->
         <div class="row section">
             <button id="submit" class="col s2 offset-s5 btn waves-effect waves-light green" type="submit" name="action">

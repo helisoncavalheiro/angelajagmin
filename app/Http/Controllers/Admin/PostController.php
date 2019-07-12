@@ -89,7 +89,7 @@ class PostController extends Controller
         $request->validate($rules, $messages);
 
         //Salva o post no banco de dados
-        $post = Post::create(request(['title', 'content', 'status']));
+        $post = Post::create(request(['title', 'content']));
         //Atribui as imagens da requisição para uma variável $photos
         $photos = $request->file('images');
 
@@ -185,10 +185,8 @@ class PostController extends Controller
       $title = $request->input('title');
       $images = $request->file('images');
       $content = $request->input('content');
-      $status = $request->input('status');
 
-      $post->updatePost($id, $title, $content, $images, $status);
-
+      $post->updatePost($id, $title, $content, $images);
       //Retorna para o index
       return $this->index();
     }

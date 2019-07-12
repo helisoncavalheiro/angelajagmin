@@ -27,7 +27,6 @@
                         <th>Autor</th>
                         <th>Data de Criação</th>
                         <th>Última Modificação</th>
-                        <th>Status</th>
                         <th>Excluir</th>
                     </tr>
                     </thead>
@@ -44,11 +43,6 @@
                             <td>{{ $p->author }}</td>
                             <td>{{ $p->created_at }}</td>
                             <td>{{ $p->updated_at }}</td>
-                            @if($p->status == "on")
-                                <td class="green-text">Ativo</td>
-                            @else
-                                <td class="red-text">Inativo</td>
-                            @endif
                             <td>
                                 <form id="deleteForm" method="POST" action="{{ action("Admin\PostController@destroy", ["id" => $p->id])  }}">
                                     {{ method_field('DELETE') }}
