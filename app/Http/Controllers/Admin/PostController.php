@@ -155,7 +155,7 @@ class PostController extends Controller
 
           //Resumo obrigatório
           //Máximo 250 caracteres.
-          'abstract' => 'required|string|max:250',
+          'abstract' => 'required|string|max:550',
 
           //Conteúdo obrigatório
           'content' => 'required',
