@@ -33,6 +33,25 @@ class Post extends Model
         "author"
     ];
 
+    public function createPost($title, $abstract, $content, $images){
+        $post = Post::create([
+            'title' =>$title,
+            'abstract' => $abstract,
+            'content' => $content
+        ]);
+
+        $imageObject = new Image();
+        foreach ($images as $imageRequest){
+
+            //chama o método que salva a imagem no servidor
+            //retorna a imagem que foi salva
+            $savedImage = $imageObject->insertImage($imageRequest, 'post');
+
+            //Salva o objeto da imagem no banco
+            $post->images()->save($savedImage);
+        }
+    }
+
     public function updatePost($id, $title, $content, $images, $status){
         $post = Post::find($id);
 

@@ -85,24 +85,12 @@ class PostController extends Controller
          */
         $request->validate($rules, $messages);
 
+
+
         //Salva o post no banco de dados
         $post = Post::create(request(['title', 'content', 'status']));
         //Atribui as imagens da requisição para uma variável $photos
         $photos = $request->file('images');
-
-        //Executa um loop no array de imagens
-        foreach ($photos as $photo) {
-            //Aramzena a imagem no caminho especificado
-            //**NOTE: o método store() retorna o caminho da imagem armazenda
-            $filename = $photo->store($path);
-            // cria um novo objeto da Imagem
-            // configurando o caminho da imagem armazenada
-            $image = new Image([
-                'filepath' => $filename
-            ]);
-            //Salva o objeto da imagem no banco
-            $post->images()->save($image);
-        }
 
         //Retorna para o index
         return $this->index();
