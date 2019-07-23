@@ -14,7 +14,6 @@
                 <!-- Para cada post no array de posts -->
                 @foreach($posts as $post)
                 <!-- Card do post -->
-                @if($post->status == "on")
                 <div class="section card row show-on-medium-and-up hide-on-small-only hoverable">
                     <!-- Link que direciona para a página do post-->
                     <a href="post/{{ $post->id }}">
@@ -30,10 +29,11 @@
                             </div>
 
                             <div class="row">
-                                <!-- Última atualização do post -->
+                                <!-- Última atualização do post
                                 <p class="col s5 post-update valign-wrapper "><i class="material-icons left tiny">access_time</i>Atualizado em {{ $post->updated_at  }}</p>
+                                -->
                                 <!--Autor do post -->
-                                <p class="col s5 pull-s1 post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i>por Ângela Jagmin Carretta </p>
+                                <p class="col s5 post-author valign-wrapper"><i class="material-icons left tiny">account_circle</i>por Ângela Jagmin Carretta </p>
                             </div>
 
                             <!-- Linha da imagem e do resumo -->
@@ -50,7 +50,7 @@
                                     <div class="post-resumo">
                                         <!--Resumo da notícia-->
                                         <span class="post-content">
-                                            <?php echo $post->content;  ?>
+                                            <?php echo $post->abstract; ?>
                                         </span>
                                     </div>
                                 </div>
@@ -61,17 +61,16 @@
                         <!-- Fim do card da notícia -->
                     </a>
                 </div>
-                @endif
                 @endforeach
             </div>
             <!-- Fim da coluna dos posts para telas grandes -->
-
+            <!--
             <div class="col m4 hide-on-med-and-down">
                 <div class="card-panel">
                     <span class="card-title">
                         <h4>Mais Clicadas:</h4>
                     </span>
-                    <!--
+
                     <div class="card-content row">
                         <ul class="col s10 push-m2">
                             <li><a href="#">Jogos para ensino da matemática</a></li>

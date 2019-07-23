@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     public function author()
     {
     	return $this->belongsTo('App\Author');
@@ -33,31 +36,11 @@ class Post extends Model
         "author"
     ];
 
-    public function createPost($title, $abstract, $content, $images){
-        $post = Post::create([
-            'title' =>$title,
-            'abstract' => $abstract,
-            'content' => $content
-        ]);
-
-        $imageObject = new Image();
-        foreach ($images as $imageRequest){
-
-            //chama o método que salva a imagem no servidor
-            //retorna a imagem que foi salva
-            $savedImage = $imageObject->insertImage($imageRequest, 'post');
-
-            //Salva o objeto da imagem no banco
-            $post->images()->save($savedImage);
-        }
-    }
-
     public function updatePost($id, $title, $content, $images, $status){
         $post = Post::find($id);
 
         $post->title = $title;
         $post->content = $content;
-        $post->status = $status;
         $post->save();
         $old_images = $post->images;
 

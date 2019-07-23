@@ -25,6 +25,17 @@
           @enderror
         </div>
 
+          <!--editor do resumo -->
+          <div class="section">
+              <label for="content">Resumo: (Texto que aparece na página inicial. Máximo 500 caracteres.) </label>
+              <textarea name="abstract" id="abstract" rows="20"></textarea>
+              <br/>
+              <div class="divider"></div>
+              @error('abstract')
+              <span class="helper-text errors">{{ $message }}</span>
+              @enderror
+          </div>
+
 
         <!--input da imagem principal -->
           <div class="section">
@@ -79,7 +90,7 @@
         -->
 
 
-        <!--Status do post -->
+        <!--Status do post
         <div class="row section">
           <div class="switch col s4 left">
             <label class="red-text">Inativo</label>
@@ -90,7 +101,7 @@
             <label class="green-text">Ativo</label>
           </div>
         </div>
-
+        -->
         <!-- Botão de salvar -->
         <div class="row section">
             <button id="submit" class="col s2 offset-s5 btn waves-effect waves-light green" type="submit" name="action">

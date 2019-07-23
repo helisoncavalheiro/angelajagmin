@@ -59,6 +59,10 @@ class PostController extends Controller
             //Conteúdo obrigatório
             'content' => 'required',
 
+            //Resumo obrigatório
+            //Máximo 250 caracteres.
+            'abstract' => 'required|string|max:550  ',
+
             /*
              * As imagens são obrigatórias
              * Deve ser um array
@@ -88,7 +92,8 @@ class PostController extends Controller
 
 
         //Salva o post no banco de dados
-        $post = Post::create(request(['title', 'content', 'status']));
+        $post = Post::create(request(['title', 'content', 'abstract']));
+
         //Atribui as imagens da requisição para uma variável $photos
         $photos = $request->file('images');
 
@@ -133,6 +138,10 @@ class PostController extends Controller
           //Título obrigatório
           'title' => 'required',
 
+          //Resumo obrigatório
+          //Máximo 250 caracteres.
+          'abstract' => 'required|string|max:550',
+
           //Conteúdo obrigatório
           'content' => 'required',
 
@@ -167,10 +176,8 @@ class PostController extends Controller
       $title = $request->input('title');
       $images = $request->file('images');
       $content = $request->input('content');
-      $status = $request->input('status');
 
-      $post->updatePost($id, $title, $content, $images, $status);
-
+      $post->updatePost($id, $title, $content, $images);
       //Retorna para o index
       return $this->index();
     }
@@ -183,6 +190,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->deletePost($post);
+        return $this->index();
     }
 }

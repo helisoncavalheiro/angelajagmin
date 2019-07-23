@@ -13,6 +13,21 @@ ClassicEditor
         console.log(error);
     });
 
+ClassicEditor
+    .create(document.querySelector('#abstract'), {
+        toolbar: ['heading', '|', 'bold', 'italic'],
+        heading: {
+            options: [
+                {model: 'paragraph', title: 'Parágrafo', class: 'ck-heading_paragraph'},
+                {model: 'heading1', view: 'h1', title: 'Título 1', class: 'ck-heading_heading1'},
+                {model: 'heading2', view: 'h2', title: 'Título 2', class: 'ck-heading_heading2'}
+            ]
+        }
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
 
 var new_images = new Array();
 var form = document.getElementById('form');
