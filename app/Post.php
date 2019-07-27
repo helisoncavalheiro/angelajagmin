@@ -14,18 +14,21 @@ class Post extends Model
 
     public function author()
     {
-    	return $this->belongsTo('App\Author');
+        return $this->belongsTo('App\Author');
     }
 
-    public function project(){
-    	return $this->belongsTo('App\Project');
+    public function project()
+    {
+        return $this->belongsTo('App\Project');
     }
 
-    public function category(){
-    	return $this->belongsToMany('App\Category');
+    public function category()
+    {
+        return $this->belongsToMany('App\Category');
     }
 
-    public function images(){
+    public function images()
+    {
         return $this->hasMany('App\Image');
     }
 
@@ -37,21 +40,23 @@ class Post extends Model
         "author"
     ];
 
-    public function createPost($title, $abstract, $content, $images){
+    public function createPost($title, $abstract, $content, $images)
+    {
         $post = Post::create([
-           'title' => $title,
-           'abstract' => $abstract,
-           'content' => $content
+            'title' => $title,
+            'abstract' => $abstract,
+            'content' => $content
         ]);
 
         $imageObject = new Image();
-        foreach ($images as $imageRequest){
+        foreach ($images as $imageRequest) {
             $storedImage = $imageObject->insertImage($imageRequest, 'post');
             $post->images()->save($storedImage);
         }
     }
 
-    public function updatePost($id, $title, $abstract, $content, $images){
+    public function updatePost($id, $title, $abstract, $content, $images)
+    {
         $post = Post::find($id);
 
         $post->title = $title;
@@ -59,13 +64,18 @@ class Post extends Model
         $post->abstract = $abstract;
         $post->save();
 
-        if(isset($images)){
+        if (isset($images)) {
             $imageObject = new Image();
-            foreach($images as $image){
+            foreach ($images as $image) {
                 $storedImage = $imageObject->insertImage($image, 'post');
                 $post->images()->save($storedImage);
             }
         }
 
+    }
+
+    public function deletePost($post)
+    {
+        $post->delete();
     }
 }
