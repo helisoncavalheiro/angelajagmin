@@ -36,5 +36,6 @@ Route::prefix('/admin')->group(function(){
 	]);
 });
 
+Route::get('/admin/image/delete/{id}', 'Admin\ImageController@delete');
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');

@@ -30,7 +30,6 @@ class PostController extends Controller
     }
 
 
-
     /**
      * Show the form for creating a new resource.
      *
@@ -41,16 +40,9 @@ class PostController extends Controller
         return view('admin.form_add_post');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-
-        $path = "images/posts";
+        //dd($request->all());
         //Regras de validação
         $rules = [
             //Título obrigatório
@@ -68,7 +60,8 @@ class PostController extends Controller
              * Deve ser um array
              * Deve ter no mínimo 1 imagem
             */
-            'images' => 'required|image',
+            'images' => 'required',
+            'images.*' => 'image'
 
             //Adicionar as regras para autor e projeto quando for possível
         ];
@@ -89,22 +82,16 @@ class PostController extends Controller
          */
         $request->validate($rules, $messages);
 
+        $post = new Post();
+        $post->createPost($request->input('title'), $request->input('abstract'), $request->input('content'), $request->file('images'));
 
-
-        //Salva o post no banco de dados
-        $post = Post::create(request(['title', 'content', 'abstract']));
-
-        //Atribui as imagens da requisição para uma variável $photos
-        $photos = $request->file('images');
-
-        //Retorna para o index
         return $this->index();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -115,77 +102,79 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('admin.form_edit_post', ["post" => $post]);
+        return view('admin.form_add_post', ["post" => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-      dd($request->all());
-      $rules = [
-          //Título obrigatório
-          'title' => 'required',
 
-          //Resumo obrigatório
-          //Máximo 250 caracteres.
-          'abstract' => 'required|string|max:550',
 
-          //Conteúdo obrigatório
-          'content' => 'required',
+        $rules = [
+            //Título obrigatório
+            'title' => 'required',
 
-          /*
-           * As imagens são obrigatórias
-           * Deve ser um array
-           * Deve ter no mínimo 1 imagem
-          */
-          'images' => 'required|image',
+            //Resumo obrigatório
+            //Máximo 250 caracteres.
+            'abstract' => 'required|string|max:550',
 
-          //Adicionar as regras para autor e projeto quando for possível
-      ];
+            //Conteúdo obrigatório
+            'content' => 'required',
 
-      //Mensagens de erro customizadas
-      $messages = [
-          'title.required' => 'O título é obrigatório.',
-          'content.required' => 'É necessário fornecer um conteúdo.',
-          'images.required' => 'Selecione pelo menos 1 imagem.',
-          'images.image' => 'Apenas arquivos com as extensões .jpeg, .png, .bmp, .gif ou .svg são aceitos.'
-      ];
+            /*
+             * As imagens são obrigatórias
+             * Deve ser um array
+             * Deve ter no mínimo 1 imagem
+            */
+            'images.*' => 'image'
+            //Adicionar as regras para autor e projeto quando for possível
+        ];
 
-      //Validação dos dados
-      /*
-       * Caso haja algum erro, o usuário será redirecionado para a
-       * página anterior e os erros serão exibidos na tela.
-       * Caso os dados sejam validados, o código segue executando
-       */
-      $request->validate($rules, $messages);
+        //Mensagens de erro customizadas
+        $messages = [
+            'title.required' => 'O título é obrigatório.',
+            'content.required' => 'É necessário fornecer um conteúdo.',
+            'abstract.required' => 'É necessário fornecer um resumo.',
+            'abstract.max' => 'O resumo pode ter no máximo 500 caracteres',
+            'images.*.image' => 'Apenas arquivos com as extensões .jpeg, .png, .bmp, .gif ou .svg são aceitos.'
+        ];
 
-      $post = new Post();
+        //Validação dos dados
+        /*
+         * Caso haja algum erro, o usuário será redirecionado para a
+         * página anterior e os erros serão exibidos na tela.
+         * Caso os dados sejam validados, o código segue executando
+         */
+        $request->validate($rules, $messages);
 
-      $title = $request->input('title');
-      $images = $request->file('images');
-      $content = $request->input('content');
+        $post = new Post();
 
-      $post->updatePost($id, $title, $content, $images);
-      //Retorna para o index
-      return $this->index();
+        $title = $request->input('title');
+        $abstract = $request->input('abstract');
+        $images = $request->file('images');
+        $content = $request->input('content');
+
+        $post->updatePost($id, $title, $abstract, $content, $images);
+        //Retorna para o index
+        return $this->index();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

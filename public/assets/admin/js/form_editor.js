@@ -28,91 +28,45 @@ ClassicEditor
         console.log(error);
     });
 
+let imgprev = document.getElementById("image-preview");
+document.addEventListener('DOMContentLoaded', function () {
 
-var new_images = new Array();
-var form = document.getElementById('form');
-var imgprev = document.getElementsByClassName("new_images")[0];
-var lastImageInput;
-var imagesCounter = 0;
-document.addEventListener('DOMContentLoaded', function(){
-    if(imagesCounter == 0){
-        let divInputImage = document.createElement("DIV");
-        let divInputFile = document.createElement("DIV");
-        let inputImage = document.createElement("INPUT");
-        let btnImage = document.createElement("DIV");
-        let iconAddImage = document.createElement("I");
+    document.querySelector("#imagesInput").addEventListener("change", handleFileSelect, false);
 
-        divInputImage.setAttribute("class", "col s3");
-        divInputFile.setAttribute("class", "file-field input-field");
-        inputImage.setAttribute("type", "file");
-        btnImage.setAttribute("class", "btn-large blue");
-        inputImage.setAttribute("name", imagesCounter.toString());
-        iconAddImage.setAttribute("class", "material-icons");
-        iconAddImage.innerHTML = "add";
+    function handleFileSelect(evt) {
+        document.getElementById('image-preview').innerHTML = "";
+        var files = evt.target.files;
 
-        btnImage.appendChild(iconAddImage);
-        btnImage.appendChild(inputImage);
-        divInputFile.appendChild(btnImage);
-        divInputImage.appendChild(divInputFile);
-        imgprev.appendChild(divInputImage);
-        console.log(imgprev.lastChild);
-        lastImageInput = imgprev.lastChild;
+        // FileList object
+        for (var i = 0, f; f = files[i]; i++) {
 
-        //INCREMENTS IMAGE COUNTER
-        imagesCounter ++;
-    }
+            if (!f.type.match('image.*')) {
+                continue;
+            }
 
-    imgprev.querySelector("input[type=file]").addEventListener('change', function(){
-        // HIDE INPUT
-        lastImageInput.setAttribute("hidden", "");
+            var reader = new FileReader();
 
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
 
-        //SHOW THE SELECTED IMAGE
-        let img = document.createElement("img");
-        let divWrapper = document.createElement("div");
+                    // Render thumbnail.
+                    var div = document.createElement('div');
+                    div.classList.add("col");
+                    div.classList.add("m3");
+                    div.innerHTML = [
+                        '<img class="responsive-img" src="',
+                        e.target.result,
+                        '"/>'
+                    ].join('');
 
-        divWrapper.setAttribute("class", "col s3");
-        let file = lastImageInput.querySelector("input[type=file]").files[0];
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
+                    document.getElementById('image-preview').insertBefore(div, null);
+                    i++;
+                };
+            })(f);
 
-        reader.onloadend = function(){
-            img.setAttribute("src", reader.result);
-            img.setAttribute("class", "responsive-img" );
-            divWrapper.appendChild(img);
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(f);
         }
-
-        imgprev.appendChild(divWrapper);
-
-
-        //ADD A NEW IMAGE INPUT
-        let divInputImage = document.createElement("DIV");
-        let divInputFile = document.createElement("DIV");
-        let inputImage = document.createElement("INPUT");
-        let btnImage = document.createElement("DIV");
-        let iconAddImage = document.createElement("I");
-
-        divInputImage.setAttribute("class", "col s3");
-        divInputFile.setAttribute("class", "file-field input-field");
-        inputImage.setAttribute("type", "file");
-        btnImage.setAttribute("class", "btn-large blue");
-        inputImage.setAttribute("name", imagesCounter.toString());
-        iconAddImage.setAttribute("class", "material-icons");
-        iconAddImage.innerHTML = "add";
-
-        btnImage.appendChild(inputImage);
-        btnImage.appendChild(iconAddImage);
-        divInputFile.appendChild(btnImage);
-        divInputImage.appendChild(divInputFile);
-        imgprev.appendChild(divInputImage);
-        console.log(imgprev.lastChild);
-        lastImageInput = imgprev.lastChild;
-
-
-        //INCREMENTS IMAGE COUNTER
-        imagesCounter ++;
-        console.log(imagesCounter);
-
-    });
-
+    }
 });
