@@ -62,7 +62,7 @@
                             <div id="image-preview">
                                 @if(isset($project))
                                     <div class="col m9">
-                                        <img class="responsive-img" src="{{ secure_asset('storage/' .  $project->images->first()->filepath)  }}">
+                                        <img class="responsive-img" src="{{ secure_asset('storage/' . $project->images->filepath )  }}">
                                     </div>
                                 @endif
                             </div>
