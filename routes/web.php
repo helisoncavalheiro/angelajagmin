@@ -23,7 +23,8 @@ Route::get('/admin', 'Admin\PostController@index');
 
 Route::prefix('/')->group(function(){
     Route::resources([
-        'post' => 'Home\\PostController'
+        'post' => 'Home\\PostController',
+        'project' => 'Home\\ProjectController'
     ]);
 });
 

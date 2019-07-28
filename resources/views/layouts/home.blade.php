@@ -22,7 +22,7 @@
                 <a href="{{ action('Home\PostController@index')}}" class="brand-logo valign-wrapper" ><img class="nav-logo" src="{{ secure_asset('assets/images/brand-logo.png')  }}"> </a>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="nav-item" href=" {{ action('Home\PostController@index')}} ">Início</a></li>
-                    <li><a class="nav-item" href="#">Projetos</a></li>
+                    <li><a class="nav-item" href="{{ action('Home\ProjectController@index') }}">Projetos</a></li>
                     <li><a class="nav-item" href="#">Categorias</a></li>
                     <li><a class="nav-item">Sobre mim</a></li>
                     <li><a class="nav-item">Contato</a></li>
