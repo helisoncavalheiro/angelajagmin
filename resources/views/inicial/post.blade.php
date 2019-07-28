@@ -42,16 +42,20 @@
                             por Ângela Jagmin Carretta
                         </p>
                     </div>
-                    <div class="row">
-                        <a href="{{ action('Home\ProjectController@showPostsFromProject', ['id' => $post->project->id]) }}">
-                            <div class="chip blue darken-1 waves-effect waves-light">
-                                <img
-                                    src="{{ secure_asset('storage/' . $post->project->images->filepath) }}"
-                                >
-                                {{ $post->project->title }}
-                            </div>
-                        </a>
-                    </div>
+
+                    @if(isset($post->project))
+                        <div class="row">
+                            <a href="{{ action('Home\ProjectController@showPostsFromProject', ['id' => $post->project->id]) }}">
+                                <div class="chip blue darken-1 waves-effect waves-light">
+                                    <img
+                                        src="{{ secure_asset('storage/' . $post->project->images->filepath) }}"
+                                    >
+                                    {{ $post->project->title }}
+                                </div>
+                            </a>
+                        </div>
+
+                    @endif
                     <div class="row">
                         <div class="col s12">
 						<span class="publicacao-texto">
