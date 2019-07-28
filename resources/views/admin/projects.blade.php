@@ -21,14 +21,13 @@
                 <table>
                     <thead>
                     <tr>
+                        <th>Editar</th>
                         <th>ID</th>
                         <th>Título</th>
                         <th>Data de Criação</th>
                         <th>Última Modificação</th>
-                        <th>Editar</th>
-                        <!--
                         <th>Excluir</th>
-                        -->
+
                     </tr>
                     </thead>
 
@@ -44,6 +43,15 @@
                             <td>{{ $project->title }}</td>
                             <td>{{ date('d/m/Y à\s h:i', strtotime($project->created_at)) }}</td>
                             <td>{{ date('d/m/Y à\s h:i', strtotime($project->updated_at)) }}</td>
+                            <td>
+                                <form id="deleteForm" method="POST" action="{{ action("Admin\ProjectController@destroy", ["id" => $project->id])  }}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button type="submit">
+                                        <i class="material-icons text-red">delete</i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

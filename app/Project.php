@@ -73,4 +73,9 @@ class Project extends Model
 
 	    }
     }
+
+    public function deleteProject($project){
+        Storage::delete($project->images->filepath);
+	    $project->delete();
+    }
 }
