@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Post;
 use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -85,5 +86,12 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function showPostsFromProject($id){
+        $posts = Post::where('project_id', $id)->get();
+
+        return view('inicial.home', ['posts' => $posts]);
     }
 }

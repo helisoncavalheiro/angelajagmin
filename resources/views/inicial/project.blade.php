@@ -39,6 +39,14 @@
 						</span>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col m10 push-m1">
+                            <a href="{{ action('Home\ProjectController@showPostsFromProject', ['id' => $project->id]) }}">
+                                <button class="col m12 center btn btn-large blue waves-effect waves-light">Veja as publicações deste projeto!</button>
+                            </a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

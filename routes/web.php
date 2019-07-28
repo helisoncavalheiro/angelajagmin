@@ -26,6 +26,8 @@ Route::prefix('/')->group(function(){
         'post' => 'Home\\PostController',
         'project' => 'Home\\ProjectController'
     ]);
+
+    Route::get('/project/{id}/posts', 'Home\ProjectController@showPostsFromProject');
 });
 
 Route::prefix('/admin')->group(function(){

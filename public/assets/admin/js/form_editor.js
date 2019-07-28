@@ -28,8 +28,19 @@ ClassicEditor
         console.log(error);
     });
 
-let imgprev = document.getElementById("image-preview");
 document.addEventListener('DOMContentLoaded', function () {
+
+    var elems = document.querySelectorAll('select');
+
+    var instances = M.FormSelect.init(elems, {
+        dropdownOptions : {
+            alignment : 'left',
+            coverTrigger : false
+        }
+
+    });
+
+    console.log(instances[0].dropdownOptions);
 
     document.querySelector("#imagesInput").addEventListener("change", handleFileSelect, false);
 

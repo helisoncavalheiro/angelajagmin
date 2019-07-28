@@ -121,6 +121,33 @@
                         @enderror
                     </div>
 
+                    <!-- Select do projeto -->
+                    <div class="input-field col s12 m6">
+                        <select name="project" class="icons">
+                            <option value=""
+                                    @if(!isset($post))
+                                    selected
+                                    @endif
+                            >
+                                Nenhum projeto
+                            </option>
+                            @foreach($projects as $project)
+                                <option
+                                    value="{{ $project->id }}"
+                                    data-icon="{{secure_asset('storage/' . $project->images->filepath )}}"
+                                    @if(isset($post))
+                                        @if($project->id == $post->id)
+                                            selected
+                                        @endif
+                                    @endif
+                                >
+                                    {{ $project->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <label>Projeto</label>
+                    </div>
+
                     <!-- Botão de salvar -->
                     <div class="row section">
                         <button id="submit" class="col s2 offset-s5 btn waves-effect waves-light green" type="submit"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
@@ -37,7 +38,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.form_add_post');
+        $projects = Project::all();
+        return view('admin.form_add_post', [
+            "projects" => $projects
+        ]);
     }
 
     public function store(Request $request)
@@ -83,7 +87,7 @@ class PostController extends Controller
         $request->validate($rules, $messages);
 
         $post = new Post();
-        $post->createPost($request->input('title'), $request->input('abstract'), $request->input('content'), $request->file('images'));
+        $post->createPost($request->input('title'), $request->input('abstract'), $request->input('content'), $request->file('images'), $request->input('project'));
 
         return $this->index();
     }
@@ -108,7 +112,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('admin.form_add_post', ["post" => $post]);
+        $projects = Project::all();
+        return view('admin.form_add_post',
+            ["post" => $post,
+            "projects" => $projects
+            ]);
     }
 
     /**

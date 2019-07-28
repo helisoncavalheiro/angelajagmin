@@ -40,13 +40,16 @@ class Post extends Model
         "author"
     ];
 
-    public function createPost($title, $abstract, $content, $images)
+    public function createPost($title, $abstract, $content, $images, $project)
     {
         $post = Post::create([
             'title' => $title,
             'abstract' => $abstract,
             'content' => $content
         ]);
+
+        $post->project()->associate($project);
+        $post->save();
 
         $imageObject = new Image();
         foreach ($images as $imageRequest) {
