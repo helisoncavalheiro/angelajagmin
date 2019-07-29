@@ -45,9 +45,13 @@
                             caracteres.) </label>
                         <textarea name="abstract" id="abstract" rows="20">
                             @if(isset($post))
-                                &lt;p&gt;{{$post->abstract}}&lt;/p&gt;
+                                {{$post->abstract}}
+                            @else
+                                @error('abstract')
+                                    {{ old('abstract') }}
+                                @enderror
                             @endif
-                            &lt;p&gt;{{old('abstract')}}&lt;/p&gt;
+
                         </textarea>
                         <br/>
                         <div class="divider"></div>
@@ -61,9 +65,12 @@
                         <label for="content">Conteúdo: </label>
                         <textarea name="content" id="content" rows="20">
                             @if(isset($post))
-                                &lt;p&gt;{{$post->abstract}}&lt;/p&gt;
+                                {{ $post->content }}
+                            @else
+                                @error('abstract')
+                                    {{ old('content') }}
+                                @enderror
                             @endif
-                            &lt;p&gt;{{old('content')}}&lt;/p&gt;
                         </textarea>
                         <br/>
                         <div class="divider"></div>
