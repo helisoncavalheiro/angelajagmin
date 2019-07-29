@@ -87,7 +87,7 @@ class PostController extends Controller
         $request->validate($rules, $messages);
 
         $post = new Post();
-        $post->createPost($request->input('title'), $request->input('abstract'), $request->input('content'), $request->file('images'), $request->input('project'));
+        $post->createPost($request->input('title'), $request->input('abstract'), $request->input('content'), $request->file('images'), $request->file('files'), $request->input('project'));
 
         return $this->index();
     }
@@ -172,9 +172,11 @@ class PostController extends Controller
         $title = $request->input('title');
         $abstract = $request->input('abstract');
         $images = $request->file('images');
+        $files = $request->file('files');
         $content = $request->input('content');
+        $project = $request->input('project');
 
-        $post->updatePost($id, $title, $abstract, $content, $images);
+        $post->updatePost($id, $title, $abstract, $content, $images, $files, $project);
         //Retorna para o index
         return $this->index();
     }

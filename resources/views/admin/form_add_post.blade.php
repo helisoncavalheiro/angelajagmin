@@ -56,6 +56,22 @@
                         @enderror
                     </div>
 
+                    <!--editor de texto -->
+                    <div class="section">
+                        <label for="content">Conteúdo: </label>
+                        <textarea name="content" id="content" rows="20">
+                            @if(isset($post))
+                                &lt;p&gt;{{$post->abstract}}&lt;/p&gt;
+                            @endif
+                            &lt;p&gt;{{old('content')}}&lt;/p&gt;
+                        </textarea>
+                        <br/>
+                        <div class="divider"></div>
+                        @error('content')
+                        <span class="helper-text errors">{{ $message }}</span>
+                        @enderror
+                    </div>
+
 
                     <!--input da imagem -->
                     <div class="section">
@@ -81,13 +97,13 @@
                             <div class="row">
                                 <div class="col m5">
                                     <div class="file-field input-field">
-                                        <div class="btn blue">
+                                        <div class="btn red">
                                             <span><i class="material-icons medium">add</i></span>
                                             <input id="imagesInput" name="images[]" type="file" multiple>
                                         </div>
                                         <div class="file-path-wrapper text-darken-4">
-                                            <input class="file-path validate" type="text"
-                                                   placeholder="Upload one or more files">
+                                            <input class="file-path validate " type="text"
+                                                   placeholder="Adicione imagens">
                                         </div>
                                     </div>
                                 </div>
@@ -96,6 +112,7 @@
                             <span class="helper-text errors">{{ $message }}</span>
                             @enderror
                             <div class="row">
+                                <h5 class="red-text">Imagens</h5>
                                 <div id="image-preview">
 
                                 </div>
@@ -104,22 +121,58 @@
                         </div>
                     </div>
 
-
-                    <!--editor de texto -->
+                    <!--input dos arquivos -->
                     <div class="section">
-                        <label for="content">Conteúdo: </label>
-                        <textarea name="content" id="content" rows="20">
+                        <div class="files-preview section">
                             @if(isset($post))
-                                &lt;p&gt;{{$post->abstract}}&lt;/p&gt;
+                                <label>Arquivos já carregados:</label>
+                                <div class="old_files row">
+                                    <ul class="collection">
+                                    @foreach($post->files as $file)
+                                            <li class="collection-item">
+                                                <a
+                                                    href="{{ action('Admin\FileController@download', ['id' => $file->id]) }}">
+                                                    {{ $file->name }}
+                                                </a>
+                                                <a href="{{ action('Admin\FileController@delete', ['id' => $file->id ]) }}">
+                                                    <i class="material-icons small right red-text">delete</i>
+                                                </a>
+                                            </li>
+                                    @endforeach
+                                    </ul>
+                                </div>
+                                <div>
+
+                                </div>
                             @endif
-                            &lt;p&gt;{{old('content')}}&lt;/p&gt;
-                        </textarea>
-                        <br/>
-                        <div class="divider"></div>
-                        @error('content')
-                        <span class="helper-text errors">{{ $message }}</span>
-                        @enderror
+
+                            <label>Novos arquivos:</label>
+                            <div class="row">
+                                <div class="col m5">
+                                    <div class="file-field input-field">
+                                        <div class="btn blue">
+                                            <span><i class="material-icons medium">add</i></span>
+                                            <input id="filesInput" name="files[]" type="file" multiple>
+                                        </div>
+                                        <div class="file-path-wrapper text-darken-4">
+                                            <input class="file-path validate" type="text" placeholder="Adicione arquivos">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @error('files')
+                            <span class="helper-text errors">{{ $message }}</span>
+                            @enderror
+                            <div class="row">
+                                <h5 class="blue-text">Arquivos</h5>
+                                <ul class="collection" id="files-preview">
+
+                                </ul>
+
+                            </div>
+                        </div>
                     </div>
+
 
                     <!-- Select do projeto -->
                     <div class="input-field col s12 m6">

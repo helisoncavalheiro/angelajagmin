@@ -7,23 +7,7 @@
     <main class="section">
 
         <div class="row">
-            <!--
-            <div class="col m2 show-on-medium-and-up hide-on-small-and-down">
-                <div class="card-panel">
-                    <span class="">
-                        <h6 class="left-align"><b>Arquivos para Download</b></h6>
-                    </span>
-                    <ul class="card-content">
-                        <li class="valign-wrapper"><a href="#">Arquivo 1</a><i class="material-icons right" >file_download</i></li>
-                        <li class="valign-wrapper"><a href="#">Arquivo 2</a><i class="material-icons right" >file_download</i></li>
-                        <li class="valign-wrapper"><a href="#">Arquivo 3</a><i class="material-icons right" >file_download</i></li>
-                        <li class="valign-wrapper"><a href="#">Arquivo 4</a><i class="material-icons right" >file_download</i></li>
-                        <li class="valign-wrapper"><a href="#">Arquivo 5</a><i class="material-icons right" >file_download</i></li>
-                    </ul>
-                </div>
-            </div>
-            -->
-            <div class="col s12 m7 push-m2 ">
+            <div class="col s12 m8 push-m2">
                 <div class="card-panel">
                     <div class="row">
 					<span class="header col s12">
@@ -54,7 +38,6 @@
                                 </div>
                             </a>
                         </div>
-
                     @endif
                     <div class="row">
                         <div class="col s12">
@@ -63,10 +46,30 @@
 						</span>
                         </div>
                     </div>
+                    <!-- Seção de arquivos carregados -->
+                    @if(count($post->files) > 0 )
+                        <div class="section">
+                            <div class="row">
+                                <h5 class="left-align col s10 offset-m1 blue-text">Arquivos para Download:</h5>
+                            </div>
+                            <div class="row">
+                                <ul class="collection col s10 offset-m1">
+                                    @foreach($post->files as $file)
+                                        <li class="valign-wrapper collection-item">
+                                            {{ $file->name }}
+                                            <a href="{{ action('Home\FileController@download', ['id' => $file->id])  }}">
+                                                <i class="material-icons small right">file_download</i>
+                                            </a>
 
-                    <!-- Carrossel de imagens -->
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+                <!-- Carrossel de imagens -->
                     <div class="row">
-                        <h5 class="col s10 offset-m1">Galeria de imagens:</h5>
+                        <h5 class="col s10 offset-m1 red-text">Galeria de imagens:</h5>
                     </div>
                     <div class="row valign-wrapper">
                         <div class="col s1">

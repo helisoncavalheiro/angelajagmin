@@ -33,18 +33,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('select');
 
     var instances = M.FormSelect.init(elems, {
-        dropdownOptions : {
-            alignment : 'left',
-            coverTrigger : false
+        dropdownOptions: {
+            alignment: 'left',
+            coverTrigger: false
         }
 
     });
 
     console.log(instances[0].dropdownOptions);
 
-    document.querySelector("#imagesInput").addEventListener("change", handleFileSelect, false);
+    document.querySelector("#imagesInput").addEventListener("change", handleImageSelect, false);
 
-    function handleFileSelect(evt) {
+    document.querySelector("#filesInput").addEventListener("change", handleFileSelect, false);
+
+    function handleImageSelect(evt) {
         document.getElementById('image-preview').innerHTML = "";
         var files = evt.target.files;
 
@@ -72,6 +74,42 @@ document.addEventListener('DOMContentLoaded', function () {
                     ].join('');
 
                     document.getElementById('image-preview').insertBefore(div, null);
+                    i++;
+                };
+            })(f);
+
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(f);
+        }
+    }
+
+    function handleFileSelect(evt) {
+        document.getElementById('files-preview').innerHTML = "";
+        var files = evt.target.files;
+
+        // FileList object
+        for (var i = 0, f; f = files[i]; i++) {
+
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
+
+                    var fullPath = document.getElementById('filesInput').value;
+                    var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+                    var filename = fullPath.substring(startIndex);
+                    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                        filename = filename.substring(1);
+                    }
+                    // Render thumbnail.
+                    var li = document.createElement('li');
+                    li.classList.add("collection-item");
+                    li.innerHTML = [
+                        filename
+                    ].join('');
+
+                    document.getElementById('files-preview').insertBefore(li, null);
                     i++;
                 };
             })(f);

@@ -32,6 +32,10 @@ class Post extends Model
         return $this->hasMany('App\Image');
     }
 
+    public function files(){
+        return $this->hasMany('App\File');
+    }
+
     protected $fillable = [
         "title",
         "content",
@@ -40,7 +44,7 @@ class Post extends Model
         "author"
     ];
 
-    public function createPost($title, $abstract, $content, $images, $project)
+    public function createPost($title, $abstract, $content, $images, $files, $project)
     {
         $post = Post::create([
             'title' => $title,
@@ -56,15 +60,22 @@ class Post extends Model
             $storedImage = $imageObject->insertImage($imageRequest, 'post');
             $post->images()->save($storedImage);
         }
+
+        $fileObject = new File();
+        foreach ($files as $fileRequest){
+            $storedFile = $fileObject->insertFile($fileRequest);
+            $post->files()->save($storedFile);
+        }
     }
 
-    public function updatePost($id, $title, $abstract, $content, $images)
+    public function updatePost($id, $title, $abstract, $content, $images, $files, $project)
     {
         $post = Post::find($id);
 
         $post->title = $title;
         $post->content = $content;
         $post->abstract = $abstract;
+        $post->project()->associate($project);
         $post->save();
 
         if (isset($images)) {
@@ -75,10 +86,19 @@ class Post extends Model
             }
         }
 
+        if(isset($files)){
+            $fileObject = new File();
+            foreach ($files as $fileRequest){
+                $storedFile = $fileObject->insertFile($fileRequest);
+                $post->files()->save($storedFile);
+            }
+        }
+
     }
 
     public function deletePost($post)
     {
+
         $post->delete();
     }
 }

@@ -28,6 +28,7 @@ Route::prefix('/')->group(function(){
     ]);
 
     Route::get('/project/{id}/posts', 'Home\ProjectController@showPostsFromProject');
+    Route::get('/file/{id}', 'Home\FileController@download');
 });
 
 Route::prefix('/admin')->group(function(){
@@ -37,6 +38,9 @@ Route::prefix('/admin')->group(function(){
 		'project'=>'Admin\\ProjectController',
 		'post'=>'Admin\\PostController'
 	]);
+    Route::get('/image/delete/{id}', 'Admin\ImageController@delete');
+    Route::get('/file/delete/{id}', 'Admin\FileController@delete');
+    Route::get('/file/download/{id}', 'Admin\FileController@download');
 });
 
 Route::get('/admin/image/delete/{id}', 'Admin\ImageController@delete');
