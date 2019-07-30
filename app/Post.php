@@ -60,11 +60,12 @@ class Post extends Model
             $storedImage = $imageObject->insertImage($imageRequest, 'post');
             $post->images()->save($storedImage);
         }
-
-        $fileObject = new File();
-        foreach ($files as $fileRequest){
-            $storedFile = $fileObject->insertFile($fileRequest);
-            $post->files()->save($storedFile);
+        if (isset($files)) {
+            $fileObject = new File();
+            foreach ($files as $fileRequest) {
+                $storedFile = $fileObject->insertFile($fileRequest);
+                $post->files()->save($storedFile);
+            }
         }
     }
 
