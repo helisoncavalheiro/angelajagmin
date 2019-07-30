@@ -195,7 +195,7 @@
                                 <option
                                     value="{{ $project->id }}"
                                     data-icon="{{secure_asset('storage/' . $project->images->filepath )}}"
-                                    @if(isset($post))
+                                    @if(isset($post->$project))
                                         @if($project->id == $post->project->id)
                                             selected
                                         @endif
