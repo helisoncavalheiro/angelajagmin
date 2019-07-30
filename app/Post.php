@@ -99,6 +99,11 @@ class Post extends Model
 
     public function deletePost($post)
     {
+        $images = $post->images;
+
+        foreach ($images as $image){
+            $image->removeImage($image);
+        }
 
         $post->delete();
     }

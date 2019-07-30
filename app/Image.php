@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
 {
@@ -29,8 +30,9 @@ class Image extends Model
 
     }
 
-    public function removeImage(){
-
+    public function removeImage($image){
+        Storage::delete($image->filepath);
+        $image->delete();
     }
 
 }

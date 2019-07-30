@@ -8,12 +8,15 @@ use App\Http\Controllers\Controller;
 
 class ImageController extends Controller
 {
-    public function delete($id){
+    public function delete(Request $request, $imageId){
 
-        $savedImages = Image::all();
-        if(count($savedImages) > 0){
-            $image = Image::destroy($id);
-            return redirect()->back();
+        $postId = $request->all(['postId']);
+        $savedImages = Image::where('post_id', $postId)->get();
+        if( (count($savedImages) - 1) > 0){
+            $image = Image::find($imageId);
+            $image->removeImage($image);
         }
+
+        return redirect()->back();
     }
 }

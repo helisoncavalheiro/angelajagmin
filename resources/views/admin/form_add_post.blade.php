@@ -91,7 +91,7 @@
                                             <img src="{{ secure_asset('storage/' . $img->filepath) }}"
                                                  class="responsive-img"/>
                                         </div>
-                                        <a href="{{ action('Admin\ImageController@delete', ['id' => $post->id ])  }}"
+                                        <a href="{{ action('Admin\ImageController@delete', ['imageId' => $img->id, 'postId' => $post->id ])  }}"
                                            class="col s1"><i class="material-icons small red-text">delete</i></a>
                                     @endforeach
                                 </div>
