@@ -90,7 +90,7 @@ class ProjectController extends Controller
 
 
     public function showPostsFromProject($id){
-        $posts = Post::where('project_id', $id)->get();
+        $posts = Post::where('project_id', $id)->orderBy('created_at', 'desc')->get();
 
         return view('inicial.home', ['posts' => $posts]);
     }

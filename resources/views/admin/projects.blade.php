@@ -41,8 +41,8 @@
                             </td>
                             <td>{{ $project->id }}</td>
                             <td>{{ $project->title }}</td>
-                            <td>{{ date('d/m/Y à\s h:i', strtotime($project->created_at)) }}</td>
-                            <td>{{ date('d/m/Y à\s h:i', strtotime($project->updated_at)) }}</td>
+                            <td>{{ date('d/m/Y à\s H:i', strtotime($project->created_at)) }}</td>
+                            <td>{{ date('d/m/Y à\s H:i', strtotime($project->updated_at)) }}</td>
                             <td>
                                 <form id="deleteForm" method="POST" action="{{ action("Admin\ProjectController@destroy", ["id" => $project->id])  }}">
                                     {{ method_field('DELETE') }}

@@ -41,8 +41,8 @@
                             <td>{{ $p->id }}</td>
                             <td>{{ $p->title }}</td>
                             <td>{{ $p->author }}</td>
-                            <td>{{ $p->created_at }}</td>
-                            <td>{{ $p->updated_at }}</td>
+                            <td>{{ date('d/m/Y à\s H:i', strtotime($p->created_at ))}}</td>
+                            <td>{{ date('d/m/Y à\s H:i', strtotime($p->updated_at )) }}</td>
                             <td>
                                 <form id="deleteForm" method="POST" action="{{ action("Admin\PostController@destroy", ["id" => $p->id])  }}">
                                     {{ method_field('DELETE') }}

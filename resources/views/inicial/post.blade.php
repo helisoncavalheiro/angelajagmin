@@ -14,15 +14,16 @@
 						<h1 class="left-align post-title">{{ $post->title }}</h1>
 					</span>
                     </div>
-                    <div class="row">
-                    <!-- Última atualização do post
-					<p class="col s5 post-update valign-wrapper"><i class="material-icons left tiny">access_time</i>Atualizado em {{ $post->updated_at  }}</p>
-					-->
+                    <div class="row valign-wrapper">
+                        <!-- Última atualização do post -->
+                        <p class="col s4 post-update valign-wrapper pull-s2"><i class="material-icons left tiny">access_time</i>Publicado
+                            em {{ date('d/m/Y à\s H:i', strtotime($post->created_at ))  }}</p>
+
                         <!--
                         Autor do post
                         -->
-                        <p class="col s5 post-author valign-wrapper">
-                            <i class="material-icons left tiny">account_circle</i>
+                        <p class="col s4 pull-s4 post-author valign-wrapper">
+                            <i class="material-icons left medium">account_circle</i>
                             por Ângela Jagmin Carretta
                         </p>
                     </div>
@@ -66,31 +67,36 @@
                                 </ul>
                             </div>
                         </div>
-                    @endif
+                @endif
                 <!-- Carrossel de imagens -->
                     <div class="row">
                         <h5 class="col s10 offset-m1 red-text">Galeria de imagens:</h5>
                     </div>
                     <div class="row valign-wrapper">
+
                         <div class="col s1">
                             <a href="#!" id="slider-button-left">
                                 <i class="material-icons medium right deep-orange-text lighten-1">chevron_left</i>
                             </a>
                         </div>
+
                         <div class="col s10 carousel carousel-slider">
                             @foreach($post->images as $i)
                                 <div class="col s10">
-                                    <a class="carousel-item" href="#one!">
-                                        <img src="{{ secure_asset('storage/'.$i->filepath) }}">
+                                    <a class="carousel-item" href="#!">
+                                        <img class="materialboxed responsive-img"
+                                             src="{{ secure_asset('storage/'.$i->filepath) }}">
                                     </a>
                                 </div>
                             @endforeach
                         </div>
+
                         <div class="col s1">
                             <a href="#!" id="slider-button-right">
                                 <i class="material-icons medium left deep-orange-text lighten-1">chevron_right</i>
                             </a>
                         </div>
+
                     </div>
                 </div>
             </div>

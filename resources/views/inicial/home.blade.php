@@ -30,17 +30,19 @@
                                     </div>
 
                                     <div class="row">
-                                    <!-- Última atualização do post
-                                <p class="col s5 post-update valign-wrapper "><i class="material-icons left tiny">access_time</i>Atualizado em {{ $post->updated_at  }}</p>
-                                -->
+                                        <!-- Última atualização do post -->
+                                        <p class="col s5 post-update valign-wrapper "><i
+                                                class="material-icons left small">access_time</i>Publicado
+                                            em {{ date('d/m/Y à\s H:i', strtotime($post->created_at ))  }}</p>
+
                                         <!--Autor do post -->
                                         <p class="col s5 post-author valign-wrapper"><i
-                                                class="material-icons left tiny">account_circle</i>por Ângela Jagmin
+                                                class="material-icons left small">account_circle</i>por Ângela Jagmin
                                             Carretta </p>
                                     </div>
 
                                     <!-- Linha da imagem e do resumo -->
-                                    <div class="row valign-wrapper">
+                                    <div class="row valign-wrapper section">
 
                                         <!--Coluna da imagem da notícia-->
                                         <div class="col m6">
@@ -61,19 +63,18 @@
                                         <!--Fim da coluna do resumo da notícia-->
                                     </div>
                                     @if(isset($post->project))
-                                        <div class="section">
-                                            <div class="row">
-                                                <a href="{{ action('Home\ProjectController@showPostsFromProject', ['id' => $post->project->id]) }}">
-                                                    <div class="chip blue darken-1 col offset-m1 waves-effect waves-light">
-                                                        <img
-                                                            src="{{ secure_asset('storage/' . $post->project->images->filepath) }}"
-                                                        >
-                                                        {{ $post->project->title }}
-                                                    </div>
-                                                </a>
-                                            </div>
+                                        <div class="row">
+                                            <a href="{{ action('Home\ProjectController@showPostsFromProject', ['id' => $post->project->id]) }}">
+                                                <div
+                                                    class="chip blue darken-1 col offset-m1 waves-effect waves-light">
+                                                    <img
+                                                        src="{{ secure_asset('storage/' . $post->project->images->filepath) }}"
+                                                    >
+                                                    {{ $post->project->title }}
+                                                </div>
+                                            </a>
                                         </div>
-                                    @endif
+                                @endif
                                 <!--Fim da linha da imagem e do resumo -->
                                 </div>
                                 <!-- Fim do card da notícia -->

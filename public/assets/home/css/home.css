@@ -1,12 +1,13 @@
 
 /*Adiciona margem para o card da notícia */
 .card-noticia{
-    margin: 1rem 1rem;
+    margin: 0rem 0.5rem;
 
 }
 
 .card-noticia .row{
     margin-bottom: 0;
+    margin-top: 0;
 }
 /*Adiciona padding para o conteúdo da notícia
   e configura a cor dos links para preto
@@ -33,17 +34,17 @@
 }
 
 .post-header{
-    padding: 0 12px;
+    padding: 0 5px;
     margin-bottom: 0;
 }
 
 .post-update{
     color: #505050;
     font-size: 14px;
-    margin: 14px 12px 0;
+    margin: 5px 0px 0;
 }
 
 .post-author{
     color: #505050;
-    margin: 14px 12px 0;
+    margin: 5px 0px 0;
 }

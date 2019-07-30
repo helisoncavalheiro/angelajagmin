@@ -3,15 +3,19 @@ $(document).ready(function () {
         indicators : true,
     });
     var c = M.Carousel.getInstance(elem);
-    
+
     $('#slider-button-left').click(function () {
         c.prev();
     });
 
     $('#slider-button-right').click(function () {
-        c.next();
+        if (c.length > 1) {
+            c.next();
+        }
     });
-    
+
+    var elems = document.querySelectorAll('.materialboxed');
+    M.Materialbox.init(elems, {});
 
 
 });
