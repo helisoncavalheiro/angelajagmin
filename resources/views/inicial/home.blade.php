@@ -17,7 +17,7 @@
                     <!-- Card do post -->
                         <div class="section card row show-on-medium-and-up hide-on-small-only hoverable">
                             <!-- Link que direciona para a página do post-->
-                            <a href="post/{{ $post->id }}">
+                            <a href="{{ action('Home\PostController@show', ["id" => $post->id]) }}">
                                 <!--Card da notícia (adiciona margem)-->
                                 <div class="card-noticia col m12">
 
