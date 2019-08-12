@@ -32,8 +32,14 @@ class Post extends Model
         return $this->hasMany('App\Image');
     }
 
-    public function files(){
+    public function files()
+    {
         return $this->hasMany('App\File');
+    }
+
+    public function videos()
+    {
+        return $this->hasMany('App\Video');
     }
 
     protected $fillable = [
@@ -44,7 +50,7 @@ class Post extends Model
         "author"
     ];
 
-    public function createPost($title, $abstract, $content, $images, $files, $project)
+    public function createPost($title, $abstract, $content, $images, $files, $project, $videos)
     {
         $post = Post::create([
             'title' => $title,
@@ -67,9 +73,17 @@ class Post extends Model
                 $post->files()->save($storedFile);
             }
         }
+
+        if (isset($videos)) {
+            $videoObject = new Video();
+            foreach ($videos as $video) {
+                $savedVideo = $videoObject->insertVideo($video);
+                $post->videos()->save($savedVideo);
+            }
+        }
     }
 
-    public function updatePost($id, $title, $abstract, $content, $images, $files, $project)
+    public function updatePost($id, $title, $abstract, $content, $images, $files, $project, $videos)
     {
         $post = Post::find($id);
 
@@ -87,11 +101,19 @@ class Post extends Model
             }
         }
 
-        if(isset($files)){
+        if (isset($files)) {
             $fileObject = new File();
-            foreach ($files as $fileRequest){
+            foreach ($files as $fileRequest) {
                 $storedFile = $fileObject->insertFile($fileRequest);
                 $post->files()->save($storedFile);
+            }
+        }
+
+        if (isset($videos)) {
+            $videoObject = new Video();
+            foreach ($videos as $video) {
+                $savedVideo = $videoObject->insertVideo($video);
+                $post->videos()->save($savedVideo);
             }
         }
 
@@ -101,7 +123,7 @@ class Post extends Model
     {
         $images = $post->images;
 
-        foreach ($images as $image){
+        foreach ($images as $image) {
             $image->removeImage($image);
         }
 

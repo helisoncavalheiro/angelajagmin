@@ -86,8 +86,15 @@ class PostController extends Controller
          */
         $request->validate($rules, $messages);
 
+        $videos = [];
+        foreach ($request->input() as $pos => $input) {
+            if (strpos($pos, 'video') === 0 && $input != "") {
+                $videos[] = $input;
+            }
+        }
+
         $post = new Post();
-        $post->createPost($request->input('title'), $request->input('abstract'), $request->input('content'), $request->file('images'), $request->file('files'), $request->input('project'));
+        $post->createPost($request->input('title'), $request->input('abstract'), $request->input('content'), $request->file('images'), $request->file('files'), $request->input('project'), $videos);
 
         return $this->index();
     }
@@ -115,7 +122,7 @@ class PostController extends Controller
         $projects = Project::all();
         return view('admin.form_add_post',
             ["post" => $post,
-            "projects" => $projects
+                "projects" => $projects
             ]);
     }
 
@@ -169,6 +176,12 @@ class PostController extends Controller
 
         $post = new Post();
 
+        $videos = [];
+        foreach ($request->input() as $pos => $input) {
+            if (strpos($pos, 'video') === 0 && $input != "") {
+                $videos[] = $input;
+            }
+        }
         $title = $request->input('title');
         $abstract = $request->input('abstract');
         $images = $request->file('images');
@@ -176,7 +189,7 @@ class PostController extends Controller
         $content = $request->input('content');
         $project = $request->input('project');
 
-        $post->updatePost($id, $title, $abstract, $content, $images, $files, $project);
+        $post->updatePost($id, $title, $abstract, $content, $images, $files, $project, $videos);
         //Retorna para o index
         return $this->index();
     }

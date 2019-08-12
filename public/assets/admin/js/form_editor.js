@@ -29,6 +29,8 @@ ClassicEditor
     });
 
 document.addEventListener('DOMContentLoaded', function () {
+    var tooltipedElems = document.querySelectorAll('.tooltipped');
+    var tooltipedInstances = M.Tooltip.init(tooltipedElems);
 
     var elems = document.querySelectorAll('select');
 
@@ -40,11 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    console.log(instances[0].dropdownOptions);
+    var videoCounter = 1;
 
     document.querySelector("#imagesInput").addEventListener("change", handleImageSelect, false);
 
     document.querySelector("#filesInput").addEventListener("change", handleFileSelect, false);
+
+    document.querySelector("#buttonAddVideo").addEventListener("click", handleVideoInsert, false);
 
     function handleImageSelect(evt) {
         document.getElementById('image-preview').innerHTML = "";
@@ -117,5 +121,57 @@ document.addEventListener('DOMContentLoaded', function () {
             // Read in the image file as a data URL.
             reader.readAsDataURL(f);
         }
+    }
+
+    function handleVideoInsert(evt){
+        let currentVideoLink = document.getElementById('videoInput').value;
+
+        if(currentVideoLink != "") {
+            //remove eventuais mensagens de erro
+            document.getElementById("videoInput").style =
+                "border-bottom: 1px solid #000;" +
+                "box-shadow: 0 1px 0 0 #000;";
+            document.getElementById("videoInput").placeholder = "Digite um link.";
+
+            //cria o elemento de lista e adiciona a classe do materialize para coleções
+            let li = document.createElement("li");
+            li.classList.add("collection-item");
+            li.setAttribute("id", "videoWrapper" + videoCounter);
+            //adiciona o input com o link do vídeo dentro do item de lista
+            li.innerHTML = [
+                '<div class="row valign-wrapper">' +
+                '<div class="col s10">' +
+                '<input name="video' + videoCounter + '" value="' + currentVideoLink + '"/>' +
+                '</div>' +
+                '<div class="col s2">' +
+                '<span>' +
+                '<a href="#!" class="videoRemove" id="link'+ videoCounter +'"><i id="' + videoCounter +'" class="red-text small material-icons">delete</i></a>' +
+                '</span>' +
+                '</div>' +
+                '</div>'
+            ].join('');
+
+            //insere o li dentro do ul
+            document.getElementById('videos-preview').insertBefore(li, null);
+
+            //limpa o link do input principal
+            document.getElementById('videoInput').value = "";
+
+            //adiciona o listener no botão de excluir
+            document.getElementById('link' + videoCounter.toString()).addEventListener("click", handleVideoDelete, false);
+
+            videoCounter++;
+
+        }else{
+            document.getElementById("videoInput").style =
+                "border-bottom: 1px solid red;" +
+                "box-shadow: 0 1px 0 0 red;";
+            document.getElementById("videoInput").placeholder = "Digite um link válido.";
+        }
+    }
+
+    function handleVideoDelete(evt) {
+        let videoId = evt.target.id;
+        document.getElementById("videoWrapper" + videoId).remove();//.remove();
     }
 });

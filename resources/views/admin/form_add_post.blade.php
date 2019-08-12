@@ -48,7 +48,7 @@
                                 {{$post->abstract}}
                             @else
                                 @error('abstract')
-                                    {{ old('abstract') }}
+                                {{ old('abstract') }}
                                 @enderror
                             @endif
 
@@ -68,7 +68,7 @@
                                 {{ $post->content }}
                             @else
                                 @error('abstract')
-                                    {{ old('content') }}
+                                {{ old('content') }}
                                 @enderror
                             @endif
                         </textarea>
@@ -135,7 +135,7 @@
                                 <label>Arquivos já carregados:</label>
                                 <div class="old_files row">
                                     <ul class="collection">
-                                    @foreach($post->files as $file)
+                                        @foreach($post->files as $file)
                                             <li class="collection-item">
                                                 <a
                                                     href="{{ action('Admin\FileController@download', ['id' => $file->id]) }}">
@@ -145,7 +145,7 @@
                                                     <i class="material-icons small right red-text">delete</i>
                                                 </a>
                                             </li>
-                                    @endforeach
+                                        @endforeach
                                     </ul>
                                 </div>
                                 <div>
@@ -162,7 +162,8 @@
                                             <input id="filesInput" name="files[]" type="file" multiple>
                                         </div>
                                         <div class="file-path-wrapper text-darken-4">
-                                            <input class="file-path validate" type="text" placeholder="Adicione arquivos">
+                                            <input class="file-path validate" type="text"
+                                                   placeholder="Adicione arquivos">
                                         </div>
                                     </div>
                                 </div>
@@ -180,32 +181,71 @@
                         </div>
                     </div>
 
+                    <!--Input de vídeos -->
+                    <div class="row">
+                        <div class="col s12">
+                            <h5 class="orange-text">Vídeos</h5>
+                            <ul class="collection" id="videos-preview">
+                                <li class="collection-item">
+                                    <div class="row valign-wrapper">
+                                        <div class="col s10">
+                                            <input class="tooltipped" data-position="bottom" data-tooltip="Digite apenas o código do vídeo. Ex.: iYYRH4apXDo" placeholder="Digite o código do vídeo." id="videoInput" type="text"
+                                                   name="inputinvalido">
+                                        </div>
+                                        <div class="col s2">
+                                            <span id="buttonAddVideo" class="btn orange videoButton"><i
+                                                    class="material-icons">add</i></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                @if(isset($post) and isset($post->videos))
+                                    @foreach($post->videos as $video)
+                                        <li class="collection-item">
+                                            <div class="row valign-wrapper">
+                                                <div class="col s10">
+                                                    <input value="{{ $video->url  }}"/>
+                                                </div>
+                                                <div class="col s2">
+                                                    <span>
+                                                        <a href="{{action('Admin\VideoController@delete', ['id' => $video->id])}}">
+                                                            <i class="red-text small material-icons">delete</i></a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
 
                     <!-- Select do projeto -->
-                    <div class="input-field col s12 m6">
-                        <select name="project" class="icons">
-                            <option value=""
-                                    @if(!isset($post))
-                                    selected
-                                    @endif
-                            >
-                                Nenhum projeto
-                            </option>
-                            @foreach($projects as $project)
-                                <option
-                                    value="{{ $project->id }}"
-                                    data-icon="{{secure_asset('storage/' . $project->images->filepath )}}"
-                                    @if(isset($post->$project))
-                                        @if($project->id == $post->project->id)
-                                            selected
-                                        @endif
+                    <div class="section row">
+                        <div class="input-field col s12">
+                            <select name="project" class="icons">
+                                <option value=""
+                                        @if(!isset($post))
+                                        selected
                                     @endif
                                 >
-                                    {{ $project->title }}
+                                    Nenhum projeto
                                 </option>
-                            @endforeach
-                        </select>
-                        <label>Projeto</label>
+                                @foreach($projects as $project)
+                                    <option
+                                        value="{{ $project->id }}"
+                                        data-icon="{{secure_asset('storage/' . $project->images->filepath )}}"
+                                        @if(isset($post->$project))
+                                        @if($project->id == $post->project->id)
+                                        selected
+                                        @endif
+                                        @endif
+                                    >
+                                        {{ $project->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <label>Projeto</label>
+                        </div>
                     </div>
 
                     <!-- Botão de salvar -->

@@ -41,6 +41,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/image/delete/{id}', 'Admin\ImageController@delete');
     Route::get('/file/delete/{id}', 'Admin\FileController@delete');
     Route::get('/file/download/{id}', 'Admin\FileController@download');
+    Route::get('/video/delete/{id}', 'Admin\\VideoController@delete');
 });
 
 Route::get('/admin/image/delete/{id}', 'Admin\ImageController@delete');

@@ -69,38 +69,55 @@
                         </div>
                 @endif
                 <!-- Carrossel de imagens -->
-                    <div class="row">
-                        <h5 class="col s10 offset-m1 red-text">Galeria de imagens:</h5>
-                    </div>
-                    <div class="row valign-wrapper">
-
-                        <div class="col s1">
-                            <a href="#!" id="slider-button-left">
-                                <i class="material-icons medium right deep-orange-text lighten-1">chevron_left</i>
-                            </a>
+                    <div class="section">
+                        <div class="row">
+                            <h5 class="col s10 offset-m1 red-text">Imagens e vídeos:</h5>
                         </div>
+                        <div class="row valign-wrapper">
 
-                        <div class="col s10 carousel carousel-slider">
-                            @foreach($post->images as $i)
-                                <div class="col s10">
-                                    <a class="carousel-item" href="#!">
-                                        <img class="materialboxed responsive-img"
-                                             src="{{ secure_asset('storage/'.$i->filepath) }}">
-                                    </a>
-                                </div>
-                            @endforeach
+                            <div class="col s1">
+                                <a href="#!" id="slider-button-left">
+                                    <i class="material-icons medium right deep-orange-text lighten-1">chevron_left</i>
+                                </a>
+                            </div>
+
+                            <div class="col s10 carousel carousel-slider">
+                                @foreach($post->images as $i)
+                                    <div class="col s10">
+                                        <a class="carousel-item" href="#!">
+                                            <img class="materialboxed responsive-img"
+                                                 src="{{ secure_asset('storage/'.$i->filepath) }}">
+                                        </a>
+                                    </div>
+                                @endforeach
+                                @if(isset($post->videos))
+                                    @foreach($post->videos as $video)
+                                        <?php
+                                        $videoId = substr($video->url, strpos($video->url, "?v=") + 3);
+                                        ?>
+                                        <div class="col s10">
+                                            <a class="carousel-item video-container" href="{{ $video->url }}">
+                                                <iframe width="853" height="480"
+                                                        src="//www.youtube.com/embed/{{ $videoId }}?rel=0"
+                                                        frameborder="0" allowfullscreen showinfo="1"
+                                                        rel="0">
+                                                </iframe>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+
+                            <div class="col s1">
+                                <a href="#!" id="slider-button-right">
+                                    <i class="material-icons medium left deep-orange-text lighten-1">chevron_right</i>
+                                </a>
+                            </div>
+
                         </div>
-
-                        <div class="col s1">
-                            <a href="#!" id="slider-button-right">
-                                <i class="material-icons medium left deep-orange-text lighten-1">chevron_right</i>
-                            </a>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
 @endsection

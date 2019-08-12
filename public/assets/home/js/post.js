@@ -1,21 +1,20 @@
-$(document).ready(function () {
-    var elem = $('.carousel').carousel({
-        indicators : true,
+document.addEventListener("DOMContentLoaded", function (){
+    var carouselElem = document.querySelectorAll('.carousel');
+    var c = M.Carousel.init(carouselElem, {
+        indicators: true,
+        fullWidth: true
     });
-    var c = M.Carousel.getInstance(elem);
+    document.getElementById("slider-button-left").addEventListener("click", function () {
+        c[0].prev();
+    }, false);
 
-    $('#slider-button-left').click(function () {
-        c.prev();
-    });
-
-    $('#slider-button-right').click(function () {
-        if (c.length > 1) {
-            c.next();
+    document.getElementById("slider-button-right").addEventListener("click", function () {
+        if (c[0].images.length > 1) {
+            c[0].next();
         }
-    });
+    }, false);
 
-    var elems = document.querySelectorAll('.materialboxed');
-    M.Materialbox.init(elems, {});
-
+    var materialBoxedElems = document.querySelectorAll('.materialboxed');
+    M.Materialbox.init(materialBoxedElems, {});
 
 });
