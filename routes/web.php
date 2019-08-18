@@ -34,7 +34,7 @@ Route::prefix('/')->group(function(){
 Route::prefix('/admin')->group(function(){
 	Route::resources([
 		'author'=>'Admin\\AuthorController',
-		'category'=>'Admin\\CategoryController',
+		'tag'=>'Admin\\TagController',
 		'project'=>'Admin\\ProjectController',
 		'post'=>'Admin\\PostController'
 	]);
@@ -42,6 +42,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/file/delete/{id}', 'Admin\FileController@delete');
     Route::get('/file/download/{id}', 'Admin\FileController@download');
     Route::get('/video/delete/{id}', 'Admin\\VideoController@delete');
+    Route::get('/tag/delete/{id}', 'Admin\\TagController@deleteTag');
 });
 
 Route::get('/admin/image/delete/{id}', 'Admin\ImageController@delete');

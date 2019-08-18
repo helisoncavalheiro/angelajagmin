@@ -56,7 +56,7 @@
           <br/>
           <li><a class="white-text" href="{{ action('Admin\ProjectController@index') }}"><i class="material-icons left">school</i>Projetos</a></li>
           <br/>
-          <li><a class="white-text" href="#"><i class="material-icons left">bookmark</i>Categorias</a></li>
+          <li><a class="white-text" href="{{ action('Admin\TagController@index') }}"><i class="material-icons left">bookmark</i>Categorias</a></li>
           <br/>
           <li><a class="white-text" href="{{ action('Admin\AuthorController@index') }}"><i class="material-icons left">person</i>Usuários</a></li>
         </ul>

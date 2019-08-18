@@ -42,6 +42,10 @@ class Post extends Model
         return $this->hasMany('App\Video');
     }
 
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
+
     protected $fillable = [
         "title",
         "content",
