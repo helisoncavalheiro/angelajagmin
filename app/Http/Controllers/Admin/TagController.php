@@ -32,7 +32,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.form_tag');
+        return view('admin.forms.form_tag');
     }
 
     /**
@@ -81,7 +81,7 @@ class TagController extends Controller
     public function edit($id)
     {
         $tag = Tag::find($id);
-        return view('admin.form_tag', ['tag' => $tag]);
+        return view('admin.forms.form_tag', ['tag' => $tag]);
     }
 
     /**

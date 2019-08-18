@@ -39,7 +39,7 @@ class PostController extends Controller
     public function create()
     {
         $projects = Project::all();
-        return view('admin.form_add_post', [
+        return view('admin.forms.form_post', [
             "projects" => $projects
         ]);
     }
@@ -120,7 +120,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $projects = Project::all();
-        return view('admin.form_add_post',
+        return view('admin.forms.form_post',
             ["post" => $post,
                 "projects" => $projects
             ]);

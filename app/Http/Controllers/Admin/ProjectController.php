@@ -35,7 +35,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.form_project');
+        return view('admin.forms.form_project');
     }
 
     /**
@@ -100,7 +100,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::findOrFail($id);
-        return view('admin.form_project', ["project" => $project]);
+        return view('admin.forms.form_project', ["project" => $project]);
     }
 
     /**

@@ -34,7 +34,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return view('admin.forms.form_user');
     }
 
     /**
