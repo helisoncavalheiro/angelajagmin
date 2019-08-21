@@ -1,6 +1,7 @@
 @extends('layouts.home')
 
 @section('content')
+    <link rel="stylesheet" href="{{ secure_asset('assets/home/css/project.css') }}">
     <main class="section">
 
         <div class="row">
@@ -29,20 +30,23 @@
                     </div>
                     <div class="row">
                         <div class=" col s12 m10 push-m1">
-                            <img class="responsive-img" src="{{ secure_asset('storage/' . $project->images->filepath) }}">
+                            <img class="responsive-img"
+                                 src="{{ secure_asset('storage/' . $project->images->filepath) }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
-						<span style="text-align: justify">
-							<?php echo $project->description;  ?>
-						</span>
+                            <span class="project-content">
+                            {{ $project->description }}
+                            </span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col m10 push-m1">
                             <a href="{{ action('Home\ProjectController@showPostsFromProject', ['id' => $project->id]) }}">
-                                <button class="col m12 center btn btn-large blue waves-effect waves-light">Veja as publicações deste projeto!</button>
+                                <button class="col m12 center btn btn-large blue waves-effect waves-light">Veja as
+                                    publicações deste projeto!
+                                </button>
                             </a>
                         </div>
 
@@ -51,4 +55,6 @@
             </div>
         </div>
     </main>
+    <!-- Scripts -->
+    <script src="{{ secure_asset('assets/home/js/script.js') }}"></script>
 @endsection

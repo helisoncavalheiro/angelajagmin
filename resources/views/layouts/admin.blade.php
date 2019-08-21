@@ -9,7 +9,6 @@
   <link href="{{ secure_asset('assets/admin/css/admin-style.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{{ secure_asset('assets/materialize/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection" />
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>

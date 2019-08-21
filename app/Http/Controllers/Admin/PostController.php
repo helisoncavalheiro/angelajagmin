@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Project;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
@@ -39,8 +40,10 @@ class PostController extends Controller
     public function create()
     {
         $projects = Project::all();
+        $tags = Tag::all();
         return view('admin.forms.form_post', [
-            "projects" => $projects
+            "projects" => $projects,
+            "tags" => $tags
         ]);
     }
 
@@ -94,7 +97,16 @@ class PostController extends Controller
         }
 
         $post = new Post();
-        $post->createPost($request->input('title'), $request->input('abstract'), $request->input('content'), $request->file('images'), $request->file('files'), $request->input('project'), $videos);
+        $post->createPost(
+            $request->input('title'),
+            $request->input('abstract'),
+            $request->input('content'),
+            $request->file('images'),
+            $request->file('files'),
+            $request->input('project'),
+            $videos,
+            $request->input('tags')
+        );
 
         return $this->index();
     }
@@ -120,9 +132,19 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $projects = Project::all();
+        $tags = Tag::all();
+        $postTags = [];
+        if(isset($post->tags)) {
+            foreach ($post->tags as $tag) {
+                $postTags[] = $tag->id;
+            }
+        }
+        //dd($postTags);
         return view('admin.forms.form_post',
             ["post" => $post,
-                "projects" => $projects
+                "projects" => $projects,
+                "tags" => $tags,
+                "postTags" => $postTags
             ]);
     }
 
@@ -188,8 +210,9 @@ class PostController extends Controller
         $files = $request->file('files');
         $content = $request->input('content');
         $project = $request->input('project');
+        $tags = $request->input('tags');
 
-        $post->updatePost($id, $title, $abstract, $content, $images, $files, $project, $videos);
+        $post->updatePost($id, $title, $abstract, $content, $images, $files, $project, $videos, $tags);
         //Retorna para o index
         return $this->index();
     }

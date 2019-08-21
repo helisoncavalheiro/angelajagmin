@@ -10,7 +10,7 @@ class Tag extends Model
     use SoftDeletes;
 
     public function posts(){
-        return $this->belongsToMany('App\Post');
+        return $this->belongsToMany('App\Post', 'post_tag');
     }
 
     protected $fillable = [

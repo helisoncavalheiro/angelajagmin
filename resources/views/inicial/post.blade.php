@@ -28,18 +28,33 @@
                         </p>
                     </div>
 
-                    @if(isset($post->project))
-                        <div class="row">
+
+                    <div class="row">
+                        @if(isset($post->project))
                             <a href="{{ action('Home\ProjectController@showPostsFromProject', ['id' => $post->project->id]) }}">
-                                <div class="chip blue darken-1 waves-effect waves-light">
+                                <div class="chip waves-effect waves-light">
                                     <img
                                         src="{{ secure_asset('storage/' . $post->project->images->filepath) }}"
                                     >
                                     {{ $post->project->title }}
                                 </div>
                             </a>
-                        </div>
-                    @endif
+                        @endif
+                        @if(isset($post->tags))
+                            @foreach($post->tags as $tag)
+                                <a href="{{ action('Home\TagController@showPostsByTag', ['id' => $tag->id]) }}">
+                                    <div
+                                        class="chip waves-effect waves-light">
+                                        <div class="valign-wrapper">
+                                            <i class="material-icons tiny left">label</i>
+                                            {{ $tag->name}}
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        @endif
+                    </div>
+
                     <div class="row">
                         <div class="col s12">
 						<span class="publicacao-texto">
@@ -120,4 +135,6 @@
             </div>
         </div>
     </main>
+    <!-- Scripts -->
+    <script src="{{ secure_asset('assets/home/js/script.js') }}"></script>
 @endsection

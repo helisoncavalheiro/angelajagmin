@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Post;
 use App\Project;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,10 +15,17 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $projects = Project::all();
-        return view('inicial.projects', [ 'projects' => $projects]);
+        $tagsDd = Tag::all()->take(5);
+        $projectsDd = Project::all()->take(5);
+
+        return view('inicial.projects', [
+            'projects' => $projects,
+            'projectsDd' => $projectsDd,
+            'tagsDd' => $tagsDd
+        ]);
 
     }
 
@@ -34,7 +42,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,19 +53,25 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $project = Project::find($id);
-        return view('inicial.project', ['project' => $project]);
+        $tagsDd = Tag::all()->take(5);
+        $projectsDd = Project::all()->take(5);
+        return view('inicial.project', [
+            'project' => $project,
+            'projectsDd' => $projectsDd,
+            'tagsDd' => $tagsDd
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -68,8 +82,8 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -80,7 +94,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -89,9 +103,20 @@ class ProjectController extends Controller
     }
 
 
-    public function showPostsFromProject($id){
+    public function showPostsFromProject(Request $request, $id)
+    {
         $posts = Post::where('project_id', $id)->orderBy('created_at', 'desc')->get();
+        $filter = "project";
+        $project = Project::find($id);
+        $tagsDd = Tag::all()->take(5);
+        $projectsDd = Project::all()->take(5);
 
-        return view('inicial.home', ['posts' => $posts]);
+        return view('inicial.home', [
+            'posts' => $posts,
+            'filter' => $filter,
+            'projectFilter' => $project,
+            'projectsDd' => $projectsDd,
+            'tagsDd' => $tagsDd
+        ]);
     }
 }

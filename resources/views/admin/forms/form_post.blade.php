@@ -189,7 +189,9 @@
                                 <li class="collection-item">
                                     <div class="row valign-wrapper">
                                         <div class="col s10">
-                                            <input class="tooltipped" data-position="bottom" data-tooltip="Digite apenas o código do vídeo. Ex.: iYYRH4apXDo" placeholder="Digite o código do vídeo." id="videoInput" type="text"
+                                            <input class="tooltipped" data-position="bottom"
+                                                   data-tooltip="Digite apenas o código do vídeo. Ex.: iYYRH4apXDo"
+                                                   placeholder="Digite o código do vídeo." id="videoInput" type="text"
                                                    name="inputinvalido">
                                         </div>
                                         <div class="col s2">
@@ -221,7 +223,7 @@
 
                     <!-- Select do projeto -->
                     <div class="section row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s6">
                             <select name="project" class="icons">
                                 <option value=""
                                         @if(!isset($post))
@@ -245,6 +247,31 @@
                                 @endforeach
                             </select>
                             <label>Projeto</label>
+                        </div>
+
+                        <!-- Select do projeto -->
+                        <div class="input-field col s6">
+                            <select name="tags[]" multiple>
+                                <option value=""
+                                        disabled
+                                        @if(!isset($tag))
+                                        selected
+                                    @endif
+                                >
+                                    Sem categoria
+                                </option>
+                                @foreach($tags as $tag)
+                                    <option
+                                        value="{{ $tag->id }}"
+                                        @if( isset($postTags) && in_array($tag->id, $postTags))
+                                            selected
+                                        @endif
+                                    >
+                                        {{ $tag->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <label>Categoria</label>
                         </div>
                     </div>
 

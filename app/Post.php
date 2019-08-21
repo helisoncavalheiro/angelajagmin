@@ -43,7 +43,7 @@ class Post extends Model
     }
 
     public function tags(){
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag', 'post_tag');
     }
 
     protected $fillable = [
@@ -54,7 +54,7 @@ class Post extends Model
         "author"
     ];
 
-    public function createPost($title, $abstract, $content, $images, $files, $project, $videos)
+    public function createPost($title, $abstract, $content, $images, $files, $project, $videos, $tags)
     {
         $post = Post::create([
             'title' => $title,
@@ -63,6 +63,8 @@ class Post extends Model
         ]);
 
         $post->project()->associate($project);
+        $post->tags()->attach($tags);
+
         $post->save();
 
         $imageObject = new Image();
@@ -87,7 +89,7 @@ class Post extends Model
         }
     }
 
-    public function updatePost($id, $title, $abstract, $content, $images, $files, $project, $videos)
+    public function updatePost($id, $title, $abstract, $content, $images, $files, $project, $videos, $tags)
     {
         $post = Post::find($id);
 
@@ -95,6 +97,10 @@ class Post extends Model
         $post->content = $content;
         $post->abstract = $abstract;
         $post->project()->associate($project);
+
+        $post->tags()->detach();
+        $post->tags()->attach($tags);
+
         $post->save();
 
         if (isset($images)) {

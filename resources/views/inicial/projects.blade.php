@@ -25,4 +25,6 @@
 
         </div>
     </main>
+    <!-- Scripts -->
+    <script src="{{ secure_asset('assets/home/js/script.js') }}"></script>
 @endsection

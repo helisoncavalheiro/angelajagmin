@@ -29,6 +29,8 @@ Route::prefix('/')->group(function(){
 
     Route::get('/project/{id}/posts', 'Home\ProjectController@showPostsFromProject');
     Route::get('/file/{id}', 'Home\FileController@download');
+    Route::get('/tag/{id}/posts', 'Home\\TagController@showPostsByTag');
+    Route::get('/tag', 'Home\\TagController@showTags');
 });
 
 Route::prefix('/admin')->group(function(){
